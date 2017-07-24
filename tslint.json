@@ -20,7 +20,8 @@
     "import-spacing": true,
     "indent": [
       true,
-      "spaces"
+      "spaces",
+      4
     ],
     "interface-over-type-literal": true,
     "label-position": true,
@@ -117,13 +118,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "app",
+      "vistex",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "app",
+      "vistex",
       "kebab-case"
     ],
     "use-input-property-decorator": true,
