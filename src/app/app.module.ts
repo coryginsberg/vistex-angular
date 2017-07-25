@@ -15,6 +15,7 @@ import { VideosComponent } from './videos/videos.component';
 import { WebinarsComponent } from './webinars/webinars.component';
 import { EventsComponent } from './events/events.component';
 import { VistasComponent } from './vistas/vistas.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -25,7 +26,7 @@ const routes: Routes = [
     // Catch-all: Anything not declared above goes here.
     // TODO: Make this a 404 page.
     path: '**',
-    component: HomeComponent
+    component: NotFoundComponent
   }
 ];
 
@@ -37,7 +38,8 @@ const routes: Routes = [
     VideosComponent,
     WebinarsComponent,
     EventsComponent,
-    VistasComponent
+    VistasComponent,
+    NotFoundComponent
   ],
 
   imports: [

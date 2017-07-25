@@ -1,9 +1,13 @@
 $vistex-blue: #073156;
 .resources-template {
-    position: relative;
-    text-align: center;
+    // position: relative;
+    // text-align: center;
 }
 
 .header {
     color: $vistex-blue;
+}
+
+.resources-links {
+    margin-bottom: 30px;
 }
