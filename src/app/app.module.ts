@@ -17,14 +17,15 @@ import { EventsComponent } from './events/events.component';
 import { VistasComponent } from './vistas/vistas.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+
 const routes: Routes = [
   {
-    path: 'resources',
+    path: '',
     component: HomeComponent
   },
   {
     // Catch-all: Anything not declared above goes here.
-    // TODO: Make this a 404 page.
     path: '**',
     component: NotFoundComponent
   }
@@ -48,6 +49,7 @@ const routes: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     ),
     NgbModule.forRoot(),
+    BsDropdownModule.forRoot(),
     BrowserModule,
     HttpModule,
   ],
