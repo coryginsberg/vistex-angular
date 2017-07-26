@@ -1,10 +1,12 @@
+import { ResourceService } from './../resource.service';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'vistex-home',
     templateUrl: './home.component.html',
-    styleUrls: ['./home.component.scss']
+    styleUrls: ['./home.component.scss'],
+    providers: [ResourceService]
 })
 export class HomeComponent implements OnInit {
 
@@ -39,13 +41,24 @@ export class HomeComponent implements OnInit {
     ddServicesTtl = 'Services';
     ddSolutionsTtl = 'Solutions';
 
-    constructor() { }
+    resourceType;
+
+    resources;
+
+    constructor(private resourceService: ResourceService) { }
 
     ngOnInit() {
+        this.getResources();
+    }
+
+    getResources() {
+        this.resourceService.getResources().then(resources => this.resources = resources);
     }
 
     toggleIndustry(industry) {
         this.ddIndustriesTtl = industry;
+
+
     }
     toggleService(service) {
         this.ddServicesTtl = service;

@@ -1,3 +1,4 @@
+import { FlexLayoutModule } from '@angular/flex-layout';
 // Root Angular Imports
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
@@ -10,11 +11,6 @@ import { HomeComponent } from './home/home.component';
 
 // Extra Angular Imports
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { CaseStudiesComponent } from './case-studies/case-studies.component';
-import { VideosComponent } from './videos/videos.component';
-import { WebinarsComponent } from './webinars/webinars.component';
-import { EventsComponent } from './events/events.component';
-import { VistasComponent } from './vistas/vistas.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -35,11 +31,6 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     HomeComponent,
-    CaseStudiesComponent,
-    VideosComponent,
-    WebinarsComponent,
-    EventsComponent,
-    VistasComponent,
     NotFoundComponent
   ],
 
@@ -52,6 +43,7 @@ const routes: Routes = [
     BsDropdownModule.forRoot(),
     BrowserModule,
     HttpModule,
+    FlexLayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

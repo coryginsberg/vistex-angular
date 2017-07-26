@@ -1,71 +1,66 @@
+<div class="container-fluid">
+    <div class="header">
+        <h1 class="text-center">Resources</h1>
+    </div>
+</div>
+
 <div class="container">
-    <div class="resources-template">
-        <div class="header">
-            <h1>Resources</h1>
-            <div class="share-buttons">
-                <div class="row justify-content-center">
-                    <div class="col-1"><a href="//linkedin.com">LinkedIn</a></div>
-                    <div class="col-1"><a href="//twitter.com">Twitter</a></div>
-                    <div class="col-1"><a href="//google.com/plus">Google+</a></div>
-                    <div class="col-1"><a href="//facebook.com">Facebook</a></div>
-                </div>
+    <div class="row">
+        <div class="col-md-3 my-auto">
+            <h3 class="text-center">Filter Resources:</h3>
+        </div>
+        <div class="col-md-3 mx-auto">
+            <div class="btn-group btn-block" dropdown>
+                <button dropdownToggle type="button" class="btn btn-secondary btn-lg dropdown-toggle">{{ddIndustriesTtl}} <span class="caret"></span></button>
+                <ul *dropdownMenu class="dropdown-menu" role="menu">
+                    <li *ngFor="let industry of industries" role="menuitem">
+                        <a class="dropdown-item" (click)="toggleIndustry(industry)">{{industry}}</a>
+                    </li>
+                    <div class="dropdown-divider"></div>
+                    <li role="menuitem"><a class="dropdown-item" (click)="toggleIndustry('Industries')">Clear</a></li>
+                </ul>
             </div>
         </div>
-
-        <div class="row justify-content-center">
-            <div class="col-sm-4">
-                <div class="btn-group" dropdown>
-                    <button dropdownToggle type="button" class="btn btn-secondary dropdown-toggle">{{ddIndustriesTtl}} <span class="caret"></span></button>
-                    <ul *dropdownMenu class="dropdown-menu" role="menu">
-                        <li *ngFor="let industry of industries" role="menuitem">
-                            <a class="dropdown-item" (click)="toggleIndustry(industry)">{{industry}}</a>
-                        </li>
-                        <div class="dropdown-divider"></div>
-                        <li role="menuitem"><a class="dropdown-item" (click)="toggleIndustry('Industries')">Clear</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="btn-group" dropdown>
-                    <button dropdownToggle type="button" class="btn btn-secondary dropdown-toggle">{{ddServicesTtl}} <span class="caret"></span></button>
-                    <ul *dropdownMenu class="dropdown-menu" role="menu">
-                        <li *ngFor="let service of services" role="menuitem">
-                            <a class="dropdown-item" (click)="toggleService(service)">{{service}}</a>
-                        </li>
-                        <div class="dropdown-divider"></div>
-                        <li role="menuitem"><a class="dropdown-item" (click)="toggleService('Services')">Clear</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="btn-group" dropdown>
-                    <button dropdownToggle type="button" class="btn btn-secondary dropdown-toggle">{{ddSolutionsTtl}} <span class="caret"></span></button>
-                    <ul *dropdownMenu class="dropdown-menu" role="menu">
-                        <li *ngFor="let solution of solutions" role="menuitem">
-                            <a class="dropdown-item" (click)="toggleSolution(solution)">{{solution}}</a>
-                        </li>
-                        <div class="dropdown-divider"></div>
-                        <li role="menuitem"><a class="dropdown-item" (click)="toggleSolution('Solutions')">Clear</a></li>
-                    </ul>
-                </div>
+        <div class="col-md-3 mx-auto">
+            <div class="btn-group" dropdown>
+                <button dropdownToggle type="button" class="btn btn-secondary btn-lg dropdown-toggle">{{ddServicesTtl}} <span class="caret"></span></button>
+                <ul *dropdownMenu class="dropdown-menu" role="menu">
+                    <li *ngFor="let service of services" role="menuitem">
+                        <a class="dropdown-item" (click)="toggleService(service)">{{service}}</a>
+                    </li>
+                    <div class="dropdown-divider"></div>
+                    <li role="menuitem"><a class="dropdown-item" (click)="toggleService('Services')">Clear</a></li>
+                </ul>
             </div>
         </div>
+        <div class="col-md-3 mx-auto">
+            <div class="btn-group" dropdown>
+                <button dropdownToggle type="button" class="btn btn-secondary btn-lg dropdown-toggle">{{ddSolutionsTtl}} <span class="caret"></span></button>
+                <ul *dropdownMenu class="dropdown-menu" role="menu">
+                    <li *ngFor="let solution of solutions" role="menuitem">
+                        <a class="dropdown-item" (click)="toggleSolution(solution)">{{solution}}</a>
+                    </li>
+                    <div class="dropdown-divider"></div>
+                    <li role="menuitem"><a class="dropdown-item" (click)="toggleSolution('Solutions')">Clear</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
-        <hr>
+    <hr>
 
-        <div class="row justify-content-center">
-            <!-- For Testing Only -->
-            <!-- Array is amount of cards in list -->
-            <div class="col-lg-4" *ngFor="let i of [1,1,1,1,1,1,1,1,1]">
-                <a href="#">
-                    <div class="resources-links card">
-                        <img class="card-img-top" src="http://via.placeholder.com/314x174" alt="Card image cap">
-                        <div class="card-block">
-                            <h5 class="card-title">Lorem Ipsum</h5>
-                        </div>
+    <div class="row justify-content-center">
+        <!-- For Testing Only -->
+        <!-- Array is amount of cards in list -->
+        <div class="col-lg-4" *ngFor="let i of [1,1,1,1,1,1,1,1,1]">
+            <a href="#">
+                <div class="resources-links card">
+                    <img class="card-img-top" src="//via.placeholder.com/314x174" alt="Card image cap">
+                    <div class="card-block">
+                        <h5 class="card-title">ScanSource: Increasing Pricing Efficiency 80% with SAP Solution Extensions and Software from Vistex</h5>
                     </div>
-                </a>
-            </div>
+                </div>
+            </a>
         </div>
     </div>
 </div>
