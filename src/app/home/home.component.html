@@ -52,15 +52,17 @@
     <div class="row justify-content-center">
         <!-- For Testing Only -->
         <!-- Array is amount of cards in list -->
-        <div class="col-lg-4" *ngFor="let i of [1,1,1,1,1,1,1,1,1]">
-            <a href="#">
-                <div class="resources-links card">
-                    <img class="card-img-top" src="//via.placeholder.com/314x174" alt="Card image cap">
-                    <div class="card-block">
-                        <h5 class="card-title">ScanSource: Increasing Pricing Efficiency 80% with SAP Solution Extensions and Software from Vistex</h5>
+        <div class="col-lg-4" *ngFor="let resource of resources">
+            <div *ngIf="resource.isVisible">
+                <a href="{{resource.link}}">
+                    <div class="resources-links card">
+                        <img class="card-img-top" src="{{resource.image}}" alt="Card image">
+                        <div class="card-block">
+                            <h5 class="card-title">{{resource.blurb}}</h5>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
         </div>
     </div>
 </div>
