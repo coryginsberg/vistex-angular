@@ -49,19 +49,21 @@
 
     <hr>
 
-    <div class="row justify-content-center">
-        <!-- For Testing Only -->
-        <!-- Array is amount of cards in list -->
-        <div class="col-lg-4" *ngFor="let resource of resources">
-            <div *ngIf="resource.isVisible">
-                <a href="{{resource.link}}">
-                    <div class="resources-links card">
-                        <img class="card-img-top" src="{{resource.image}}" alt="Card image">
-                        <div class="card-block">
-                            <h5 class="card-title">{{resource.blurb}}</h5>
+    <div id="wrapper">
+        <div id="columns">
+            <!-- For Testing Only -->
+            <!-- Array is amount of cards in list -->
+            <div *ngFor="let resource of resources">
+                <div *ngIf="resource.isVisible">
+                    <a href="{{resource.link}}">
+                        <div class="resources-links card pin">
+                            <img class="card-img-top" src="{{resource.image}}" alt="Card image">
+                            <div class="card-block">
+                                <h5 class="card-title">{{resource.blurb}}</h5>
+                            </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

@@ -53,3 +53,57 @@ $vistex-blue: #073156;
     width: inherit;
     text-overflow: ellipsis;
 }
+
+#wrapper {
+    width: 100%;
+    min-width: 800px;
+    margin: 50px auto;
+}
+
+@mixin column-count-gap-fill($count,
+$gap,
+$fill) {
+    -webkit-column-count: $count;
+    -webkit-column-gap: $gap;
+    -webkit-column-fill: $fill;
+    -moz-column-count: $count;
+    -moz-column-gap: $gap;
+    -moz-column-fill: $fill;
+    column-count: $count;
+    column-gap: $gap;
+    column-fill: $fill;
+}
+
+#columns {
+    @include column-count-gap-fill(3,
+    30px,
+    auto);
+}
+
+@mixin column-break-inside($column-break-inside) {
+    -webkit-column-break-inside: $column-break-inside;
+    -moz-column-break-inside: $column-break-inside;
+    column-break-inside: $column-break-inside;
+}
+
+.pin {
+    @include column-break-inside(avoid);
+}
+
+@mixin column-count($column-count) {
+    -webkit-column-count: $column-count;
+    -moz-column-count: $column-count;
+    column-count: $column-count;
+}
+
+@media (min-width: 960px) {
+    #columns {
+        @include column-count(3);
+    }
+}
+
+@media (min-width: 1100px) {
+    #columns {
+        @include column-count(4);
+    }
+}
