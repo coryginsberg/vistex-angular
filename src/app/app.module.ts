@@ -1,4 +1,4 @@
-import { ResourceService } from './resource.service';
+import { ResourceService } from './resources/resource.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 // Root Angular Imports
 import { BrowserModule } from '@angular/platform-browser';

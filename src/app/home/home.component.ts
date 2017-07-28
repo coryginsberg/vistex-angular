@@ -1,7 +1,7 @@
 import { GetKeyPipe } from '../get-key.pipe';
 import { Industries, Services, Solutions } from '../resources/resources.enum';
-import { Resource } from '../resource';
-import { ResourceService } from '../resource.service';
+import { Resource } from '../resources/resource';
+import { ResourceService } from '../resources/resource.service';
 import { Component, OnInit, Pipe } from '@angular/core';
 import { RouterLink } from '@angular/router';
 

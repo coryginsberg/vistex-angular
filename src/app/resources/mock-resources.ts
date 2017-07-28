@@ -11,23 +11,24 @@ export const RESOURCES: Resource[] = [
     },
     {
         image: '//via.placeholder.com/314x174',
-        blurb: 'Mea te facer nonumes lobortis, et duo sensibus intellegat definitionem. In elitr eripuit mea.',
+        blurb: 'Border States streamlines SPAs with Solutions for SAP by Vistex',
         link: '#',
         isVisible: true,
 
         service: 'Analytics',
+        solution: 'Solutions for SAP',
     },
     {
         image: '//via.placeholder.com/314x174',
-        blurb: 'At wisi facilisis qui.',
+        blurb: 'Sovereign Music Rocks Royalties Administration with Record Maestro by Vistex',
         link: '#',
         isVisible: true,
 
-        industry: 'Chemical',
+        industry: 'Music, Media & Licensing',
     },
     {
         image: '//via.placeholder.com/314x174',
-        blurb: 'Affert populo instructior sea ea.',
+        blurb: 'Channel Rewards Program Boosts Bottom Line',
         link: '#',
         isVisible: true,
 
@@ -35,58 +36,58 @@ export const RESOURCES: Resource[] = [
     },
     {
         image: '//via.placeholder.com/314x174',
-        blurb: 'Est id nulla errem dolor, ludus animal ponderum est ne.',
+        blurb: 'Carlin Music 100 years of Music',
         link: '#',
         isVisible: true,
 
-        industry: 'Telecommunications',
+        industry: 'Music, Media & Licensing',
     },
     {
         image: '//via.placeholder.com/314x174',
-        blurb: 'Option tibique ei qui, at consul feugait cum',
+        blurb: 'Sequential Brands Group Enhancing brand performance visibility with License Maestro',
         link: '#',
         isVisible: true,
 
-        industry: 'Solution for SAP',
+        industry: 'Music, Media & Licensing',
     },
     {
         image: '//via.placeholder.com/314x174',
-        blurb: 'Aliquid albucius appareat at pro, eu mei solum debet docendi.',
+        blurb: 'Vistex helps Svensk Filmindustri manage contracts',
         link: '#',
         isVisible: true,
 
-        industry: 'Foodservice',
+        industry: 'Music, Media & Licensing',
     },
     {
         image: '//via.placeholder.com/314x174',
-        blurb: 'Justo corrumpit neglegentur ei sed, nemore appetere conceptam vel ea, id novum torquatos pro.',
+        blurb: 'High Performance Network Leader Strengthens Global MDF Processes',
         link: '#',
         isVisible: true,
 
-        industry: 'Telecommunications',
+        service: 'Strategy',
     },
     {
         image: '//via.placeholder.com/314x174',
-        blurb: 'In nam appareat luptatum.',
+        blurb: 'Vistex helps Imagem \'Make the Difference\'',
         link: '#',
         isVisible: true,
 
-        industry: 'Telecommunications',
+        service: 'Customer Support',
     },
     {
         image: '//via.placeholder.com/314x174',
-        blurb: 'Novum interesset nam ad, ancillae suavitate reprehendunt mel ei.',
-        link: '#',
-        isVisible: true,
-
-        industry: 'Chemical',
-    },
-    {
-        image: '//via.placeholder.com/314x174',
-        blurb: 'Ad magna euismod quo.',
+        blurb: 'Technology Leader Increases Service Revenue With Targeted Training & Incentives',
         link: '#',
         isVisible: true,
 
         service: 'Training',
+    },
+    {
+        image: '//via.placeholder.com/314x174',
+        blurb: 'Animal Health International streamlines management of $100 million in vendor receivables',
+        link: '#',
+        isVisible: true,
+
+        service: 'Program Delivery',
     },
 ];
