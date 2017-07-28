@@ -1,42 +1,22 @@
+import { GetKeyPipe } from '../get-key.pipe';
+import { Industries, Services, Solutions } from '../resources/resources.enum';
 import { Resource } from '../resource';
 import { ResourceService } from '../resource.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Pipe } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'vistex-home',
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],
-    providers: [ResourceService]
+    providers: [ResourceService],
 })
+
 export class HomeComponent implements OnInit {
 
-    solutions = ['Go-to-Market Suite',
-        'Solution for SAP',
-        'channelConduit Suite',
-        'Counterpoint Suite',
-        'VIBES'];
-    industries = ['Agriculture',
-        'Chemical',
-        'Foodservice',
-        'Manufaturing',
-        'Mill Products',
-        'Retail',
-        'Wholesale Distribution',
-        'Automotive',
-        'Consumer Products',
-        'High Tech',
-        'Life Science',
-        'Music, Media & Licensing',
-        'Telecommunications'];
-    services = ['Analytics',
-        'CRM Integration',
-        'Program Delivery',
-        'Solution Delivery',
-        'Customer Support',
-        'Global Payments',
-        'Strategy',
-        'Training'];
+    industries = Industries;
+    services = Services;
+    solutions = Solutions;
 
     ddIndustriesTtl = 'Industries';
     ddServicesTtl = 'Services';
@@ -62,7 +42,7 @@ export class HomeComponent implements OnInit {
                 if (resource.industry !== industry) { resource.isVisible = false; } else { resource.isVisible = true; }
             }
         } else {
-            for (const resource of this.resources) { 
+            for (const resource of this.resources) {
                 resource.isVisible = true;
             }
         }

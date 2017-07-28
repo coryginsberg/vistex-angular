@@ -7,11 +7,11 @@ export const RESOURCES: Resource[] = [
         link: '#',
         isVisible: true,
 
-        industry: 'Chemical',
+        solution: 'Solutions for SAP',
     },
     {
         image: '//via.placeholder.com/314x174',
-        blurb: 'Border States streamlines SPAs with Solutions for SAP by Vistex',
+        blurb: 'Mea te facer nonumes lobortis, et duo sensibus intellegat definitionem. In elitr eripuit mea.',
         link: '#',
         isVisible: true,
 
@@ -19,7 +19,7 @@ export const RESOURCES: Resource[] = [
     },
     {
         image: '//via.placeholder.com/314x174',
-        blurb: 'Sovereign Music Rocks Royalties Administration with Record Maestro by Vistex',
+        blurb: 'At wisi facilisis qui.',
         link: '#',
         isVisible: true,
 
@@ -27,26 +27,66 @@ export const RESOURCES: Resource[] = [
     },
     {
         image: '//via.placeholder.com/314x174',
-        blurb: 'Sovereign Music Rocks Royalties Administration with Record Maestro by Vistex',
+        blurb: 'Affert populo instructior sea ea.',
         link: '#',
         isVisible: true,
 
         solution: 'Go-to-Market Suite',
     },
-        {
+    {
         image: '//via.placeholder.com/314x174',
-        blurb: 'Sovereign Music Rocks Royalties Administration with Record Maestro by Vistex',
+        blurb: 'Est id nulla errem dolor, ludus animal ponderum est ne.',
+        link: '#',
+        isVisible: true,
+
+        industry: 'Telecommunications',
+    },
+    {
+        image: '//via.placeholder.com/314x174',
+        blurb: 'Option tibique ei qui, at consul feugait cum',
+        link: '#',
+        isVisible: true,
+
+        industry: 'Solution for SAP',
+    },
+    {
+        image: '//via.placeholder.com/314x174',
+        blurb: 'Aliquid albucius appareat at pro, eu mei solum debet docendi.',
+        link: '#',
+        isVisible: true,
+
+        industry: 'Foodservice',
+    },
+    {
+        image: '//via.placeholder.com/314x174',
+        blurb: 'Justo corrumpit neglegentur ei sed, nemore appetere conceptam vel ea, id novum torquatos pro.',
+        link: '#',
+        isVisible: true,
+
+        industry: 'Telecommunications',
+    },
+    {
+        image: '//via.placeholder.com/314x174',
+        blurb: 'In nam appareat luptatum.',
+        link: '#',
+        isVisible: true,
+
+        industry: 'Telecommunications',
+    },
+    {
+        image: '//via.placeholder.com/314x174',
+        blurb: 'Novum interesset nam ad, ancillae suavitate reprehendunt mel ei.',
         link: '#',
         isVisible: true,
 
         industry: 'Chemical',
     },
-        {
+    {
         image: '//via.placeholder.com/314x174',
-        blurb: 'Sovereign Music Rocks Royalties Administration with Record Maestro by Vistex',
+        blurb: 'Ad magna euismod quo.',
         link: '#',
         isVisible: true,
 
-        industry: 'Chemical',
+        service: 'Training',
     },
 ];

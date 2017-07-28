@@ -3,7 +3,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 // Root Angular Imports
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
-import { NgModule } from '@angular/core';
+import { NgModule, Pipe, PipeTransform } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
 // Component Imports
@@ -15,6 +15,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { GetKeyPipe } from './get-key.pipe';
 
 const routes: Routes = [
     {
@@ -32,7 +33,8 @@ const routes: Routes = [
     declarations: [
         AppComponent,
         HomeComponent,
-        NotFoundComponent
+        NotFoundComponent,
+        GetKeyPipe
     ],
 
     imports: [
@@ -47,6 +49,6 @@ const routes: Routes = [
         FlexLayoutModule,
     ],
     providers: [ ResourceService ],
-    bootstrap: [ AppComponent ]
+    bootstrap: [ AppComponent ],
 })
 export class AppModule { }

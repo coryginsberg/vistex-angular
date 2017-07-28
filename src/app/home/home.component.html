@@ -13,7 +13,7 @@
             <div class="btn-group btn-block" dropdown>
                 <button dropdownToggle type="button" class="btn btn-secondary btn-lg dropdown-toggle">{{ddIndustriesTtl}} <span class="caret"></span></button>
                 <ul *dropdownMenu class="dropdown-menu" role="menu">
-                    <li *ngFor="let industry of industries" role="menuitem">
+                    <li *ngFor="let industry of industries | getKey" role="menuitem">
                         <a class="dropdown-item" (click)="toggleIndustry(industry)">{{industry}}</a>
                     </li>
                     <div class="dropdown-divider"></div>
@@ -25,7 +25,7 @@
             <div class="btn-group" dropdown>
                 <button dropdownToggle type="button" class="btn btn-secondary btn-lg dropdown-toggle">{{ddServicesTtl}} <span class="caret"></span></button>
                 <ul *dropdownMenu class="dropdown-menu" role="menu">
-                    <li *ngFor="let service of services" role="menuitem">
+                    <li *ngFor="let service of services | getKey" role="menuitem">
                         <a class="dropdown-item" (click)="toggleService(service)">{{service}}</a>
                     </li>
                     <div class="dropdown-divider"></div>
@@ -37,7 +37,7 @@
             <div class="btn-group" dropdown>
                 <button dropdownToggle type="button" class="btn btn-secondary btn-lg dropdown-toggle">{{ddSolutionsTtl}} <span class="caret"></span></button>
                 <ul *dropdownMenu class="dropdown-menu" role="menu">
-                    <li *ngFor="let solution of solutions" role="menuitem">
+                    <li *ngFor="let solution of solutions | getKey" role="menuitem">
                         <a class="dropdown-item" (click)="toggleSolution(solution)">{{solution}}</a>
                     </li>
                     <div class="dropdown-divider"></div>
