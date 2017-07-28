@@ -16,6 +16,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { GetKeyPipe } from './get-key.pipe';
+import { MasonryModule } from 'angular2-masonry';
 
 const routes: Routes = [
     {
@@ -47,6 +48,7 @@ const routes: Routes = [
         BrowserModule,
         HttpModule,
         FlexLayoutModule,
+        MasonryModule,
     ],
     providers: [ ResourceService ],
     bootstrap: [ AppComponent ],

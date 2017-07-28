@@ -4,6 +4,7 @@ import { Resource } from '../resources/resource';
 import { ResourceService } from '../resources/resource.service';
 import { Component, OnInit, Pipe } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { MasonryOptions } from 'angular2-masonry';
 
 @Component({
     selector: 'vistex-home',
@@ -23,9 +24,15 @@ export class HomeComponent implements OnInit {
     ddSolutionsTtl = 'Solutions';
 
     resources: Resource[];
+    public masonryOptions: MasonryOptions = {
+        columnWidth: 80,
+        gutter: 20,
+        fitWidth: true
+    };
 
-    constructor(private resourceService: ResourceService) { }
-
+    constructor(private resourceService: ResourceService) { 
+    }
+    
     ngOnInit() {
         this.getResources();
     }

@@ -1,35 +1,11 @@
 $vistex-blue: #073156;
-@mixin column-count-gap-fill($count, $gap, $fill) {
-    -webkit-column-count: $count;
-    -webkit-column-gap: $gap;
-    -webkit-column-fill: $fill;
-    -moz-column-count: $count;
-    -moz-column-gap: $gap;
-    -moz-column-fill: $fill;
-    column-count: $count;
-    column-gap: $gap;
-    column-fill: $fill;
-}
-
-@mixin column-break-inside($column-break-inside) {
-    -webkit-column-break-inside: $column-break-inside;
-    -moz-column-break-inside: $column-break-inside;
-    column-break-inside: $column-break-inside;
-}
-
-@mixin column-count($column-count) {
-    -webkit-column-count: $column-count;
-    -moz-column-count: $column-count;
-    column-count: $column-count;
-}
-
-.resources-template {
-    position: relative;
-    // text-align: center;
+// Remove the underline for highlighted text
+a:link {
+    text-decoration: none;
 }
 
 .header {
-    background-image: url("./../../assets/case-studies.jpg");
+    background-image: url("../../assets/case-studies.jpg");
     background-size: cover;
     color: #fff;
     height: 175px;
@@ -45,11 +21,26 @@ $vistex-blue: #073156;
     margin-bottom: 30px;
 }
 
+.btn-group {
+    display: flex;
+    font-size: 3vw;
+    margin: 0 auto;
+    text-align: center;
+    width: inherit;
+    .btn {
+        width: 100%;
+        flex: 1;
+    }
+}
+
+masonry {
+    max-width: 314px;
+}
+
 .card {
+    // @include column-break-inside(avoid);
     background: #fff;
-    border-radius: 2px;
     border-style: hidden;
-    position: relative;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     transition: all 0.2s cubic-bezier(.25, .8, .25, 1);
     &:hover {
@@ -57,55 +48,6 @@ $vistex-blue: #073156;
     }
 }
 
-a:link {
-    text-decoration: none!important;
-}
-
-.center-div {
-    margin: auto;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-}
-
-.btn-group {
-    display: flex;
-    .btn {
-        width: 100%;
-        flex: 1;
-    }
-    font-size: 3vw;
-    margin: 0 auto;
-    text-align: center;
-    width: inherit;
-    text-overflow: ellipsis;
-}
-
 #wrapper {
-    width: 100%;
-    margin: 50px auto;
-}
-
-#columns {
-    @include column-count-gap-fill(3,
-    30px,
-    auto);
-}
-
-.pin {
-    @include column-break-inside(avoid);
-}
-
-#columns {
-    @include column-count(1);
-    @media (min-width: 768px) {
-        @include column-count(2);
-    }
-    @media (min-width: 992px) {
-        @include column-count(3);
-    }
-    @media (min-width: 1200px) {
-        @include column-count(4);
-    }
+    margin: 0 auto;
 }
