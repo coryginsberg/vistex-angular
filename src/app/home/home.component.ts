@@ -31,7 +31,6 @@ export class HomeComponent implements OnInit {
         columnWidth: 314,
         gutter: 30,
         fitWidth: true,
-
     };
 
     constructor(private resourceService: ResourceService) { 

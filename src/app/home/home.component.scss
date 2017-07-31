@@ -59,5 +59,24 @@ button {
 .card {
     background: #fff;
     border-style: hidden;
-    transition: all 0.2s cubic-bezier(.25, .8, .25, 1);
+    height: 325px;
+    .card-block {
+        padding: 0;
+        margin: 0;
+        margin-top: 10px;
+    }
+}
+
+masonry {
+    margin: 0 auto;
+    &:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+}
+
+masonry-brick {
+    width: 314px;
+    float: left;
 }
