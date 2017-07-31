@@ -34,10 +34,10 @@ export class HomeComponent implements OnInit {
 
     };
 
-    constructor(private resourceService: ResourceService) { 
+    constructor(private resourceService: ResourceService) {
 
     }
-    
+
     ngOnInit() {
         this.getResources();
     }
@@ -49,37 +49,27 @@ export class HomeComponent implements OnInit {
     toggleIndustry(industry) {
         this.industryTitle = industry;
 
-        if (industry !== 'Industries') {
-            for (const resource of this.resources) {
-                if (resource.industry !== industry) { resource.isVisible = false; } else { resource.isVisible = true; }
-            }
-        } else {
-            for (const resource of this.resources) {
-                resource.isVisible = true;
-            }
-        }
+        this.showResources(industry, 'Industries');
+
     }
 
     toggleService(service) {
         this.serviceTitle = service;
+        this.showResources(service, 'Services');
 
-        if (service !== 'Services') {
-            for (const resource of this.resources) {
-                if (resource.service !== service) { resource.isVisible = false; } else { resource.isVisible = true; }
-            }
-        } else {
-            for (const resource of this.resources) {
-                resource.isVisible = true;
-            }
-        }
     }
 
     toggleSolution(solution) {
         this.solutionTitle = solution;
 
-        if (solution !== 'Solutions') {
+        this.showResources(solution, 'Solutions');
+    }
+
+    showResources(resourceType, resourceName) {
+
+        if (resourceType !== resourceName) {
             for (const resource of this.resources) {
-                if (resource.solution !== solution) { resource.isVisible = false; } else { resource.isVisible = true; }
+                if (resource.solution !== resourceType) { resource.isVisible = false; } else { resource.isVisible = true; }
             }
         } else {
             for (const resource of this.resources) {
