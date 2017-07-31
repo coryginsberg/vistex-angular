@@ -5,50 +5,51 @@
 </div>
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-3 my-auto">
-            <h3 class="text-center">Filter Resources:</h3>
-        </div>
-        <div class="col-md-3 mx-auto">
+    <div class="row justify-content-center">
+        <div class="col-md-3">
             <div class="btn-group" dropdown>
-                <button dropdownToggle type="button" class="btn btn-secondary btn-lg dropdown-toggle">{{ddIndustriesTtl}} <span class="caret"></span></button>
+                <button dropdownToggle type="button" class="btn btn-secondary btn-lg dropdown-toggle">{{industryTitle}} <span class="caret"></span></button>
                 <ul *dropdownMenu class="dropdown-menu" role="menu">
                     <li *ngFor="let industry of industries | getKey" role="menuitem">
                         <button class="dropdown-item" (click)="toggleIndustry(industry)">{{industry}}</button>
                     </li>
-                    <div class="dropdown-divider"></div>
-                    <li role="menuitem"><button class="dropdown-item" (click)="toggleIndustry('Industries')">Clear</button></li>
                 </ul>
             </div>
         </div>
-        <div class="col-md-3 mx-auto">
+        <div class="col-md-3">
             <div class="btn-group" dropdown>
-                <button dropdownToggle type="button" class="btn btn-secondary btn-lg dropdown-toggle">{{ddServicesTtl}} <span class="caret"></span></button>
+                <button dropdownToggle type="button" class="btn btn-secondary btn-lg dropdown-toggle">{{serviceTitle}} <span class="caret"></span></button>
                 <ul *dropdownMenu class="dropdown-menu" role="menu">
                     <li *ngFor="let service of services | getKey" role="menuitem">
                         <button class="dropdown-item" (click)="toggleService(service)">{{service}}</button>
                     </li>
-                    <div class="dropdown-divider"></div>
-                    <li role="menuitem"><button class="dropdown-item" (click)="toggleService('Services')">Clear</button></li>
                 </ul>
             </div>
         </div>
-        <div class="col-md-3 mx-auto">
+        <div class="col-md-3">
             <div class="btn-group" dropdown>
-                <button dropdownToggle type="button" class="btn btn-secondary btn-lg dropdown-toggle">{{ddSolutionsTtl}} <span class="caret"></span></button>
+                <button dropdownToggle type="button" class="btn btn-secondary btn-lg dropdown-toggle">{{solutionTitle}} <span class="caret"></span></button>
                 <ul *dropdownMenu class="dropdown-menu" role="menu">
                     <li *ngFor="let solution of solutions | getKey" role="menuitem">
                         <button class="dropdown-item" (click)="toggleSolution(solution)">{{solution}}</button>
                     </li>
-                    <div class="dropdown-divider"></div>
-                    <li role="menuitem"><button class="dropdown-item" (click)="toggleSolution('Solutions')">Clear</button></li>
                 </ul>
+            </div>
+        </div>
+        <div *ngIf="industryTitle !== 'Industries' || serviceTitle !== 'Services' || solutionTitle !== 'Solutions'">
+            <div class="col-md-2">
+
+                <div class="btn-clear">
+                    <button type="button" class="btn btn-lg vistex-btn" (click)="toggleIndustry('Industries'); toggleService('Services'); toggleSolution('Solutions')">
+                        <i class="material-icons align-middle md-48">clear</i>
+                        <span class="align-middle">Clear</span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 
-    <hr>
-
+    <!-- Resources -->
     <div id="wrapper">
         <masonry [options]="masonryOptions">
             <div class="brick-sizer"></div>

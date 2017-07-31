@@ -19,9 +19,9 @@ export class HomeComponent implements OnInit {
     services = Services;
     solutions = Solutions;
 
-    ddIndustriesTtl = 'Industries';
-    ddServicesTtl = 'Services';
-    ddSolutionsTtl = 'Solutions';
+    industryTitle = 'Industries';
+    serviceTitle = 'Services';
+    solutionTitle = 'Solutions';
 
     resources: Resource[];
 
@@ -35,6 +35,7 @@ export class HomeComponent implements OnInit {
     };
 
     constructor(private resourceService: ResourceService) { 
+
     }
     
     ngOnInit() {
@@ -46,7 +47,7 @@ export class HomeComponent implements OnInit {
     }
 
     toggleIndustry(industry) {
-        this.ddIndustriesTtl = industry;
+        this.industryTitle = industry;
 
         if (industry !== 'Industries') {
             for (const resource of this.resources) {
@@ -60,7 +61,7 @@ export class HomeComponent implements OnInit {
     }
 
     toggleService(service) {
-        this.ddServicesTtl = service;
+        this.serviceTitle = service;
 
         if (service !== 'Services') {
             for (const resource of this.resources) {
@@ -74,7 +75,7 @@ export class HomeComponent implements OnInit {
     }
 
     toggleSolution(solution) {
-        this.ddSolutionsTtl = solution;
+        this.solutionTitle = solution;
 
         if (solution !== 'Solutions') {
             for (const resource of this.resources) {
