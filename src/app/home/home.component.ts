@@ -25,10 +25,19 @@ export class HomeComponent implements OnInit {
 
     resources: Resource[];
 
-    constructor(private resourceService: ResourceService) {
+    // Angular2-masonry source: https://www.npmjs.com/package/angular2-masonry
+    public masonryOptions: MasonryOptions = {
+        itemSelector: '.brick',
+        columnWidth: 314,
+        gutter: 30,
+        fitWidth: true,
+
+    };
+
+    constructor(private resourceService: ResourceService) { 
 
     }
-
+    
     ngOnInit() {
         this.getResources();
     }
@@ -40,27 +49,37 @@ export class HomeComponent implements OnInit {
     toggleIndustry(industry) {
         this.industryTitle = industry;
 
-        this.showResources(industry, 'Industries');
-
+        if (industry !== 'Industries') {
+            for (const resource of this.resources) {
+                if (resource.industry !== industry) { resource.isVisible = false; } else { resource.isVisible = true; }
+            }
+        } else {
+            for (const resource of this.resources) {
+                resource.isVisible = true;
+            }
+        }
     }
 
     toggleService(service) {
         this.serviceTitle = service;
-        this.showResources(service, 'Services');
 
+        if (service !== 'Services') {
+            for (const resource of this.resources) {
+                if (resource.service !== service) { resource.isVisible = false; } else { resource.isVisible = true; }
+            }
+        } else {
+            for (const resource of this.resources) {
+                resource.isVisible = true;
+            }
+        }
     }
 
     toggleSolution(solution) {
         this.solutionTitle = solution;
 
-        this.showResources(solution, 'Solutions');
-    }
-
-    showResources(resourceType, resourceName) {
-
-        if (resourceType !== resourceName) {
+        if (solution !== 'Solutions') {
             for (const resource of this.resources) {
-                if (resource.solution !== resourceType) { resource.isVisible = false; } else { resource.isVisible = true; }
+                if (resource.solution !== solution) { resource.isVisible = false; } else { resource.isVisible = true; }
             }
         } else {
             for (const resource of this.resources) {
