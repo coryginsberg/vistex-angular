@@ -1,4 +1,7 @@
-$vistex-blue: #073156;
+$vistex-blue: #003768;
+$vistex-light-blue: #1182bd;
+$vistex-yellow: #efa020;
+$vistex-dark-yellow: #af5b00;
 // Remove the underline for highlighted text
 a:link {
     text-decoration: none;
@@ -29,21 +32,21 @@ a:link {
         border: 0px solid transparent;
         border-radius: 0;
         padding-bottom: 20px;
+        color: $vistex-blue;
     }
     margin-bottom: 20px;
     &:hover {
         background-color: transparent;
-        text-decoration: underline;
     }
 }
 
 .vistex-btn {
-    background-color: #efa020;
+    background-color: $vistex-yellow;
     border: none;
     color: #fff;
     font-size: 18px;
     font-weight: bold;
-    border-bottom: 2px solid #af5b00;
+    border-bottom: 2px solid $vistex-dark-yellow;
     text-transform: uppercase;
     line-height: 120%;
     padding: 8px 14px 10px 14px;
