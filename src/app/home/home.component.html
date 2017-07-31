@@ -49,22 +49,18 @@
     </div>
 
     <!-- Resources -->
-    <div id="wrapper">
-        <masonry [options]="masonryOptions">
-            <div class="brick-sizer"></div>
-
-            <masonry-brick class="brick" *ngFor="let resource of resources">
-                <div *ngIf="resource.isVisible">
-                    <a href="{{resource.link}}">
-                        <div class="resources-links card">
-                            <img class="card-img-top" src="{{resource.image}}" alt="Card image">
-                            <div class="card-block">
-                                <h5 class="card-title">{{resource.blurb}}</h5>
-                            </div>
+    <div id="wrapper" class="row">
+        <div class="col-md-4 col-sm-6 col-12" *ngFor="let resource of resources">
+            <div *ngIf="resource.isVisible">
+                <a href="{{resource.link}}">
+                    <div class="resources-links card">
+                        <img class="card-img-top" src="{{resource.image}}" alt="Card image">
+                        <div class="card-block">
+                            <h5 class="card-title">{{resource.blurb}}</h5>
                         </div>
-                    </a>
-                </div>
-            </masonry-brick>
-        </masonry>
+                    </div>
+                </a>
+            </div>
+        </div>
     </div>
 </div>

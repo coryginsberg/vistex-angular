@@ -25,15 +25,6 @@ export class HomeComponent implements OnInit {
 
     resources: Resource[];
 
-    // Angular2-masonry source: https://www.npmjs.com/package/angular2-masonry
-    public masonryOptions: MasonryOptions = {
-        itemSelector: '.brick',
-        columnWidth: 314,
-        gutter: 30,
-        fitWidth: true,
-
-    };
-
     constructor(private resourceService: ResourceService) {
 
     }
