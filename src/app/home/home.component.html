@@ -51,6 +51,8 @@
 
     <div id="wrapper">
         <masonry [options]="masonryOptions">
+            <div class="brick-sizer"></div>
+
             <masonry-brick class="brick" *ngFor="let resource of resources">
                 <div *ngIf="resource.isVisible">
                     <a href="{{resource.link}}">

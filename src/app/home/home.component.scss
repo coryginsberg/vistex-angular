@@ -33,10 +33,6 @@ a:link {
     }
 }
 
-masonry {
-    max-width: 314px;
-}
-
 .card {
     // @include column-break-inside(avoid);
     background: #fff;
@@ -48,6 +44,16 @@ masonry {
     }
 }
 
-#wrapper {
+masonry {
     margin: 0 auto;
+    &:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+}
+
+masonry-brick {
+    width: 314px;
+    float: left;
 }

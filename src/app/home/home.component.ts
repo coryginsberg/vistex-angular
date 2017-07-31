@@ -24,10 +24,14 @@ export class HomeComponent implements OnInit {
     ddSolutionsTtl = 'Solutions';
 
     resources: Resource[];
+
+    // Angular2-masonry source: https://www.npmjs.com/package/angular2-masonry
     public masonryOptions: MasonryOptions = {
-        columnWidth: 80,
-        gutter: 20,
-        fitWidth: true
+        itemSelector: '.brick',
+        columnWidth: 314,
+        gutter: 30,
+        fitWidth: true,
+
     };
 
     constructor(private resourceService: ResourceService) { 
