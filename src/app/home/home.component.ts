@@ -15,6 +15,8 @@ import { MasonryOptions } from 'angular2-masonry';
 
 export class HomeComponent implements OnInit {
 
+    industryDropdownIsOpen = false;
+
     industries = Industries;
     services = Services;
     solutions = Solutions;
@@ -33,10 +35,13 @@ export class HomeComponent implements OnInit {
         fitWidth: true,
     };
 
-    constructor(private resourceService: ResourceService) { 
+    public industryDropdownStatus: { isopen: boolean } = { isopen: false };
+    public servicesDropdownStatus: { isopen: boolean } = { isopen: false };
+    public solutionsDropdownStatus: { isopen: boolean } = { isopen: false };
 
+    constructor(private resourceService: ResourceService) {
     }
-    
+
     ngOnInit() {
         this.getResources();
     }
@@ -85,5 +90,23 @@ export class HomeComponent implements OnInit {
                 resource.isVisible = true;
             }
         }
+    }
+
+    showIndustriesDropdown($event: MouseEvent) {
+        $event.preventDefault();
+        $event.stopPropagation();
+        this.industryDropdownStatus.isopen = !this.industryDropdownStatus.isopen;
+    }
+
+    showServicesDropdown($event: MouseEvent) {
+        $event.preventDefault();
+        $event.stopPropagation();
+        this.servicesDropdownStatus.isopen = !this.servicesDropdownStatus.isopen;
+    }
+
+    showSolutionsDropdown($event: MouseEvent) {
+        $event.preventDefault();
+        $event.stopPropagation();
+        this.solutionsDropdownStatus.isopen = !this.solutionsDropdownStatus.isopen;
     }
 }

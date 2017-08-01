@@ -5,20 +5,20 @@
 </div>
 
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-3">
-            <div class="btn-group" dropdown>
-                <button dropdownToggle type="button" class="btn btn-secondary btn-lg dropdown-toggle">{{industryTitle}} <span class="caret"></span></button>
-                <ul *dropdownMenu class="dropdown-menu" role="menu">
+    <div class="d-flex justify-content-center">
+        <div>
+            <div class="btn-group" dropdown [isOpen]="industryDropdownStatus.isopen" (mouseenter)="showIndustriesDropdown($event)" (mouseleave)="showIndustriesDropdown($event)">
+                <button dropdownToggle type="button" class="btn btn-secondary btn-lg dropdown-toggle">{{industryTitle}}<span class="caret"></span></button>
+                <ul *dropdownMenu class="dropdown-menu">
                     <li *ngFor="let industry of industries | getKey" role="menuitem">
                         <button class="dropdown-item" (click)="toggleIndustry(industry)">{{industry}}</button>
                     </li>
                 </ul>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="btn-group" dropdown>
-                <button dropdownToggle type="button" class="btn btn-secondary btn-lg dropdown-toggle">{{serviceTitle}} <span class="caret"></span></button>
+        <div>
+            <div class="btn-group" dropdown [isOpen]="servicesDropdownStatus.isopen" (mouseenter)="showServicesDropdown($event)" (mouseleave)="showServicesDropdown($event)">
+                <button dropdownToggle type="button" class="btn btn-secondary btn-lg dropdown-toggle">{{serviceTitle}}<span class="caret"></span></button>
                 <ul *dropdownMenu class="dropdown-menu" role="menu">
                     <li *ngFor="let service of services | getKey" role="menuitem">
                         <button class="dropdown-item" (click)="toggleService(service)">{{service}}</button>
@@ -26,9 +26,9 @@
                 </ul>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="btn-group" dropdown>
-                <button dropdownToggle type="button" class="btn btn-secondary btn-lg dropdown-toggle">{{solutionTitle}} <span class="caret"></span></button>
+        <div>
+            <div class="btn-group" dropdown [isOpen]="solutionsDropdownStatus.isopen" (mouseenter)="showSolutionsDropdown($event)" (mouseleave)="showSolutionsDropdown($event)">
+                <button dropdownToggle type="button" class="btn btn-secondary btn-lg dropdown-toggle">{{solutionTitle}}<span class="caret"></span></button>
                 <ul *dropdownMenu class="dropdown-menu" role="menu">
                     <li *ngFor="let solution of solutions | getKey" role="menuitem">
                         <button class="dropdown-item" (click)="toggleSolution(solution)">{{solution}}</button>
@@ -37,7 +37,7 @@
             </div>
         </div>
         <div *ngIf="industryTitle !== 'Industries' || serviceTitle !== 'Services' || solutionTitle !== 'Solutions'">
-            <div class="col-md-2">
+            <div>
                 <div class="btn-clear">
                     <button type="button" class="btn btn-lg vistex-btn" (click)="toggleIndustry('Industries'); toggleService('Services'); toggleSolution('Solutions')">
                         <i class="material-icons align-middle md-48">clear</i>

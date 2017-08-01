@@ -2,9 +2,8 @@ $vistex-blue: #003768;
 $vistex-light-blue: #1182bd;
 $vistex-yellow: #efa020;
 $vistex-dark-yellow: #af5b00;
-// Remove the underline for highlighted text
-a:link {
-    text-decoration: none;
+button:hover {
+    text-decoration: underline;
 }
 
 .header {
@@ -21,23 +20,38 @@ a:link {
 }
 
 .btn-group {
-    display: flex;
     font-size: 3vw;
-    margin: 0 auto;
     text-align: center;
-    width: inherit;
     .btn {
-        width: 100%;
-        flex: 1;
         border: 0px solid transparent;
         border-radius: 0;
-        padding-bottom: 20px;
         color: $vistex-blue;
-    }
-    margin-bottom: 20px;
-    &:hover {
         background-color: transparent;
+        &:hover {
+            text-decoration: none;
+        }
     }
+    padding-bottom: 20px;
+}
+
+.dropdown-menu {
+    text-align: left;
+    font-size: 14px;
+    border-radius: 0;
+    border-top: 3px solid #002f56;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    background-clip: padding-box;
+    margin-top: -10px;
+    ul {
+        li {
+            color: #08c;
+        }
+    }
+}
+
+a {
+    color: #08c;
+    text-decoration: none;
 }
 
 .vistex-btn {
