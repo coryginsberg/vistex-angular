@@ -1,10 +1,7 @@
-import { FilterResourcesService } from './../filter-resources.service';
-import { GetKeyPipe } from '../get-key.pipe';
 import { Industries, Services, Solutions } from '../resources/resources.enum';
 import { Resource } from '../resources/resource';
 import { ResourceService } from '../resources/resource.service';
-import { Component, OnInit, Pipe } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { MasonryOptions } from 'angular2-masonry';
 
 @Component({
@@ -16,19 +13,19 @@ import { MasonryOptions } from 'angular2-masonry';
 
 export class HomeComponent implements OnInit {
 
-    industryDropdownIsOpen = false;
+    readonly industries = Industries;
+    readonly services = Services;
+    readonly solutions = Solutions;
 
-    industries = Industries;
-    services = Services;
-    solutions = Solutions;
+    readonly industryTitle = 'Industries';
+    readonly serviceTitle = 'Services';
+    readonly solutionTitle = 'Solutions';
 
-    industryTitle = 'Industries';
-    serviceTitle = 'Services';
-    solutionTitle = 'Solutions';
+    currentIndustryTitle = this.industryTitle;
+    currentServiceTitle = this.serviceTitle;
+    currentSolutionTitle = this.solutionTitle;
 
-    defaultDropdownName = '';
-
-    resources: Resource[] = [];
+    resources: Resource[];
 
     // Angular2-masonry source: https://www.npmjs.com/package/angular2-masonry
     public masonryOptions: MasonryOptions = {
@@ -38,38 +35,41 @@ export class HomeComponent implements OnInit {
         fitWidth: true,
     };
 
-    // Stores if the dropdown is currently openned. 
+    // Stores if the dropdown is currently opened.
     // This is set by show___Dropdown() and read by the 
     // corresponding dropdown in home.component.html
-    public industryDropdownStatus: { isopen: boolean } = { isopen: false };
-    public servicesDropdownStatus: { isopen: boolean } = { isopen: false };
-    public solutionsDropdownStatus: { isopen: boolean } = { isopen: false };
+    public industryDropdownStatus: { isOpen: boolean } = { isOpen: false };
+    public servicesDropdownStatus: { isOpen: boolean } = { isOpen: false };
+    public solutionsDropdownStatus: { isOpen: boolean } = { isOpen: false };
 
-    filterResourcesService: FilterResourcesService;
+    // filterResourcesService: FilterResourcesService;
 
     constructor(private resourceService: ResourceService) {
+
     }
 
     ngOnInit() {
-        // Gets the resources on initialization.
+        // Generate the filter lists
+        // this.filterResourcesService = new FilterResourcesService(this.resources, this.industryTitle, this.serviceTitle, this.solutionTitle);
 
         // TODO: generate resources from JSON
         this.generateResources();
         this.getResources();
-
-        this.filterResourcesService = new FilterResourcesService(this.resources, this.industryTitle, this.serviceTitle, this.solutionTitle);
     }
 
-    generateResources(): void {
+    private generateResources(): void {
         // this.resourceService.generateResources().then(resources => this.resources = resources);
     }
 
+    // Get the resources (cards) from the file.
     getResources(): void {
         this.resourceService.getResources().then(resources => this.resources = resources);
     }
 
+    ///////////////////////////////////////////////////////////////////////////////
+
     // The below functions show the dropdown when a MouseEvent is triggered.
-    // In reality, it is simply switching between isopen = true & isopen = false
+    // In reality, it is simply switching between isOpen = true & isOpen = false
     // each time it is called, but in practice the name is fine as the function is
     // to show the dropdown whenever the user hovers over the dropdown and stop 
     // showing when the user is no longer hovering over it.
@@ -77,50 +77,87 @@ export class HomeComponent implements OnInit {
         $event.preventDefault();
         $event.stopPropagation();
 
-        // Sets the dropdownStatus to the oposite of what it was before firing
-        this.industryDropdownStatus.isopen = !this.industryDropdownStatus.isopen;
+        // Sets the dropdownStatus to the opposite of what it was before firing
+        this.industryDropdownStatus.isOpen = !this.industryDropdownStatus.isOpen;
     }
 
     showServicesDropdown($event: MouseEvent) {
         $event.preventDefault();
         $event.stopPropagation();
 
-        // Sets the dropdownStatus to the oposite of what it was before firing
-        this.servicesDropdownStatus.isopen = !this.servicesDropdownStatus.isopen;
+        // Sets the dropdownStatus to the opposite of what it was before firing
+        this.servicesDropdownStatus.isOpen = !this.servicesDropdownStatus.isOpen;
     }
 
     showSolutionsDropdown($event: MouseEvent) {
         $event.preventDefault();
         $event.stopPropagation();
 
-        // Sets the dropdownStatus to the oposite of what it was before firing
-        this.solutionsDropdownStatus.isopen = !this.solutionsDropdownStatus.isopen;
+        // Sets the dropdownStatus to the opposite of what it was before firing
+        this.solutionsDropdownStatus.isOpen = !this.solutionsDropdownStatus.isOpen;
     }
 
-    // Toggle if filtering by industry.
+    ///////////////////////////////////////////////////////////////////////////////
+    // Below functions toggle the filtering of the cards when one of the items in
+    // the dropdowns is selected. The functions read the title of the dropdown and sees if
+    // it is the default title. If it is, then it resets all cards. If not, then
+    // it shows only the cards that have that resource type declared.
+    // TODO: Combine at least part into a single function. Possibly a service?
     toggleIndustry(industry) {
-        // Set the title to the selected text from the dropdown.
-        this.defaultDropdownName = this.industryTitle;
-        this.industryTitle = industry;
+        this.currentIndustryTitle = industry;
 
-        this.filterResourcesService.filter(this.defaultDropdownName, industry);
+        // Checks if the dropdown title is the default name
+        if (industry !== this.industryTitle) {
+            // If not, then filters the cards for only the ones
+            // that have the selected keyword listed.
+            for (const resource of this.resources) {
+                resource.isVisible = resource.industry === industry;
+            }
+        } else {
+            // Else show all resources (assumes that this will
+            // only be called when 'clear' is pressed).
+            this.showAllResources();
+        }
     }
 
-    // Toggle if filtering by service
     toggleService(service) {
-        // Set the title to the selected text from the dropdown.
-        this.defaultDropdownName = this.serviceTitle;
-        this.serviceTitle = service;
+        this.currentServiceTitle = service;
 
-        this.filterResourcesService.filter(this.defaultDropdownName, service);
+        // Checks if the dropdown title is the default name
+        if (service !== this.serviceTitle) {
+            // If not, then filters the cards for only the ones
+            // that have the selected keyword listed.
+            for (const resource of this.resources) {
+                resource.isVisible = resource.service === service;
+            }
+        } else {
+            // Else show all resources (assumes that this will
+            // only be called when 'clear' is pressed).
+            this.showAllResources();
+        }
     }
 
-    // Toggle if filtering by solution
     toggleSolution(solution) {
-        // Set the title to the selected text from the dropdown.
-        this.defaultDropdownName = this.solutionTitle;
-        this.solutionTitle = solution;
+        this.currentSolutionTitle = solution;
 
-        this.filterResourcesService.filter(this.defaultDropdownName, solution);
+        // Checks if the dropdown title is the default name
+        if (solution !== this.solutionTitle) {
+            // If not, then filters the cards for only the ones
+            // that have the selected keyword listed.
+            for (const resource of this.resources) {
+                resource.isVisible = resource.solution === solution;
+            }
+        } else {
+            // Else show all resources (assumes that this will
+            // only be called when 'clear' is pressed).
+            this.showAllResources();
+        }
+    }
+
+    // Restores all hidden cards
+    showAllResources() {
+        for (const resource of this.resources) {
+            resource.isVisible = true;
+        }
     }
 }
