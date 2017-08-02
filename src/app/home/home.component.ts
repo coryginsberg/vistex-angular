@@ -1,8 +1,8 @@
-import { Industries, Services, Solutions } from '../resources/resources.enum';
-import { Resource } from '../resources/resource';
-import { ResourceService } from '../resources/resource.service';
-import { Component, OnInit } from '@angular/core';
-import { MasonryOptions } from 'angular2-masonry';
+import {Industries, Services, Solutions} from '../resources/resources.enum';
+import {Resource} from '../resources/resource';
+import {ResourceService} from '../resources/resource.service';
+import {Component, OnInit} from '@angular/core';
+import {MasonryOptions} from 'angular2-masonry';
 
 @Component({
     selector: 'vistex-home',
@@ -38,32 +38,22 @@ export class HomeComponent implements OnInit {
     // Stores if the dropdown is currently opened.
     // This is set by show___Dropdown() and read by the 
     // corresponding dropdown in home.component.html
-    public industryDropdownStatus: { isOpen: boolean } = { isOpen: false };
-    public servicesDropdownStatus: { isOpen: boolean } = { isOpen: false };
-    public solutionsDropdownStatus: { isOpen: boolean } = { isOpen: false };
-
-    // filterResourcesService: FilterResourcesService;
+    public industryDropdownStatus: { isOpen: boolean } = {isOpen: false};
+    public servicesDropdownStatus: { isOpen: boolean } = {isOpen: false};
+    public solutionsDropdownStatus: { isOpen: boolean } = {isOpen: false};
 
     constructor(private resourceService: ResourceService) {
-
     }
 
     ngOnInit() {
-        // Generate the filter lists
-        // this.filterResourcesService = new FilterResourcesService(this.resources, this.industryTitle, this.serviceTitle, this.solutionTitle);
-
-        // TODO: generate resources from JSON
         this.generateResources();
-        this.getResources();
     }
 
-    private generateResources(): void {
-        // this.resourceService.generateResources().then(resources => this.resources = resources);
-    }
+    generateResources() {
 
-    // Get the resources (cards) from the file.
-    async getResources() {
-        this.resourceService.getResources().then(resources => this.resources = resources);
+        // Generates the resources from the resources-list.json file
+        // then sets that array to this.resources.
+        this.resourceService.generateResources().then(resources => this.resources = resources);
     }
 
     ///////////////////////////////////////////////////////////////////////////////
