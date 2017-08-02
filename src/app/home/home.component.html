@@ -5,54 +5,60 @@
 </div>
 
 <div class="container">
+    <!-- Filter Dropdowns -->
     <div class="d-flex justify-content-center">
-        <div>
-            <div class="btn-group" dropdown [isOpen]="industryDropdownStatus.isOpen" (mouseenter)="showIndustriesDropdown($event)" (mouseleave)="showIndustriesDropdown($event)">
-                <button dropdownToggle type="button" class="btn btn-secondary btn-lg dropdown-toggle">{{currentIndustryTitle}}<span class="caret"></span></button>
-                <ul *dropdownMenu class="dropdown-menu">
-                    <li *ngFor="let industry of industries | getKey" role="menuitem">
-                        <button class="dropdown-item" (click)="toggleIndustry(industry)">{{industry}}</button>
-                    </li>
-                </ul>
-            </div>
+        <!-- First Filter Dropdown (Industries) -->
+        <div class="btn-group" dropdown [isOpen]="industryDropdownStatus.isOpen"
+             (mouseenter)="showIndustriesDropdown($event)" (mouseleave)="showIndustriesDropdown($event)">
+            <button dropdownToggle type="button" class="btn btn-secondary btn-lg dropdown-toggle">
+                {{currentIndustryTitle}}<span class="caret"></span></button>
+            <ul *dropdownMenu class="dropdown-menu">
+                <li *ngFor="let industry of industries | getKey" role="menuitem">
+                    <button class="dropdown-item" (click)="toggleIndustry(industry)">{{industry}}</button>
+                </li>
+            </ul>
         </div>
-        <div>
-            <div class="btn-group" dropdown [isOpen]="servicesDropdownStatus.isOpen" (mouseenter)="showServicesDropdown($event)" (mouseleave)="showServicesDropdown($event)">
-                <button dropdownToggle type="button" class="btn btn-secondary btn-lg dropdown-toggle">{{currentServiceTitle}}<span class="caret"></span></button>
-                <ul *dropdownMenu class="dropdown-menu" role="menu">
-                    <li *ngFor="let service of services | getKey" role="menuitem">
-                        <button class="dropdown-item" (click)="toggleService(service)">{{service}}</button>
-                    </li>
-                </ul>
-            </div>
+        <!-- Second Filter Dropdown (Services) -->
+        <div class="btn-group" dropdown [isOpen]="servicesDropdownStatus.isOpen"
+             (mouseenter)="showServicesDropdown($event)" (mouseleave)="showServicesDropdown($event)">
+            <button dropdownToggle type="button" class="btn btn-secondary btn-lg dropdown-toggle">
+                {{currentServiceTitle}}<span class="caret"></span></button>
+            <ul *dropdownMenu class="dropdown-menu" role="menu">
+                <li *ngFor="let service of services | getKey" role="menuitem">
+                    <button class="dropdown-item" (click)="toggleService(service)">{{service}}</button>
+                </li>
+            </ul>
         </div>
-        <div>
-            <div class="btn-group" dropdown [isOpen]="solutionsDropdownStatus.isOpen" (mouseenter)="showSolutionsDropdown($event)" (mouseleave)="showSolutionsDropdown($event)">
-                <button dropdownToggle type="button" class="btn btn-secondary btn-lg dropdown-toggle">{{currentSolutionTitle}}<span class="caret"></span></button>
-                <ul *dropdownMenu class="dropdown-menu" role="menu">
-                    <li *ngFor="let solution of solutions | getKey" role="menuitem">
-                        <button class="dropdown-item" (click)="toggleSolution(solution)">{{solution}}</button>
-                    </li>
-                </ul>
-            </div>
+        <!-- Third Filter Dropdown (Solutions) -->
+        <div class="btn-group" dropdown [isOpen]="solutionsDropdownStatus.isOpen"
+             (mouseenter)="showSolutionsDropdown($event)" (mouseleave)="showSolutionsDropdown($event)">
+            <button dropdownToggle type="button" class="btn btn-secondary btn-lg dropdown-toggle">
+                {{currentSolutionTitle}}<span class="caret"></span></button>
+            <ul *dropdownMenu class="dropdown-menu" role="menu">
+                <li *ngFor="let solution of solutions | getKey" role="menuitem">
+                    <button class="dropdown-item" (click)="toggleSolution(solution)">{{solution}}</button>
+                </li>
+            </ul>
         </div>
+        <!-- If any filter is selected, then show the 'clear' button -->
         <div *ngIf="currentIndustryTitle !== industryTitle || currentServiceTitle !== serviceTitle || currentSolutionTitle !== solutionTitle">
-            <div>
-                <div class="btn-clear">
-                    <button type="button" class="btn btn-lg vistex-btn" (click)="toggleIndustry(industryTitle); toggleService(serviceTitle); toggleSolution(solutionTitle)">
-                        <i class="material-icons align-middle md-48">clear</i>
-                        <span class="align-middle">Clear</span>
-                    </button>
-                </div>
+            <div class="btn-clear">
+                <button type="button" class="btn btn-lg vistex-btn"
+                        (click)="toggleIndustry(industryTitle); toggleService(serviceTitle); toggleSolution(solutionTitle)">
+                    <i class="material-icons align-middle md-48">clear</i>
+                    <span class="align-middle">Clear</span>
+                </button>
             </div>
         </div>
     </div>
 
     <!-- Resources -->
     <div id="wrapper">
+        <!-- The angular2-masonry framework defines the masonry and masonry-brick tags -->
         <masonry [options]="masonryOptions">
             <div class="brick-sizer"></div>
             <masonry-brick class="brick" *ngFor="let resource of resources">
+                <!-- Only shows the resources that are visible -->
                 <div *ngIf="resource.isVisible">
                     <a href="{{resource.link}}">
                         <div class="resources-links card">

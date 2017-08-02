@@ -62,7 +62,7 @@ export class HomeComponent implements OnInit {
     }
 
     // Get the resources (cards) from the file.
-    getResources(): void {
+    async getResources() {
         this.resourceService.getResources().then(resources => this.resources = resources);
     }
 

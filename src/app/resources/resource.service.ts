@@ -7,6 +7,10 @@ import { compile, compileFromFile } from 'json-schema-to-typescript';
 @Injectable()
 export class ResourceService {
 
+    async getResources(): Promise<Resource[]> {
+        return Promise.resolve(RESOURCES);
+    }
+
     async generateResources() {
 
         // const deferred = this.$q.defer();
@@ -17,9 +21,5 @@ export class ResourceService {
         // })
 
         // return deferred.promise;
-    }
-
-    getResources(): Promise<Resource[]> {
-        return Promise.resolve(RESOURCES);
     }
 }
