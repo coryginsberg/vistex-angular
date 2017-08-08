@@ -1,33 +1,27 @@
-import { ResourceService } from './resources/resource.service';
+import { ResourceService } from './_resources-helpers/resource.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 // Root Angular Imports
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 // Component Imports
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './resources/resources.component';
 
 // Extra Angular Imports
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NotFoundComponent } from './not-found/not-found.component';
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { GetKeyPipe } from './get-key.pipe';
+import { GetValuePipe } from './get-value.pipe';
 import { MasonryModule } from 'angular2-masonry';
 
 const routes: Routes = [
     {
         path: '',
         component: HomeComponent
-    },
-    {
-        // Catch-all: Anything not declared above goes here.
-        path: '**',
-        component: NotFoundComponent
     }
 ];
 
@@ -35,8 +29,7 @@ const routes: Routes = [
     declarations: [
         AppComponent,
         HomeComponent,
-        NotFoundComponent,
-        GetKeyPipe
+        GetValuePipe
     ],
 
     imports: [

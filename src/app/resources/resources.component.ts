@@ -1,13 +1,13 @@
-import {Industries, Services, Solutions} from '../resources/resources.enum';
-import {Resource} from '../resources/resource';
-import {ResourceService} from '../resources/resource.service';
-import {Component, OnInit} from '@angular/core';
-import {MasonryOptions} from 'angular2-masonry';
+import { Industries, Services, Solutions } from '../_resources-helpers/resources.enum';
+import { Resource } from '../_resources-helpers/resource';
+import { ResourceService } from '../_resources-helpers/resource.service';
+import { Component, OnInit } from '@angular/core';
+import { MasonryOptions } from 'angular2-masonry';
 
 @Component({
-    selector: 'vistex-home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.scss'],
+    selector: 'vistex-resources',
+    templateUrl: './resources.component.html',
+    styleUrls: ['./resources.component.scss'],
     providers: [ResourceService],
 })
 
@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
 
     // Stores if the dropdown is currently opened.
     // This is set by show___Dropdown() and read by the 
-    // corresponding dropdown in home.component.html
+    // corresponding dropdown in resources.component.html
     public industryDropdownStatus: { isOpen: boolean } = {isOpen: false};
     public servicesDropdownStatus: { isOpen: boolean } = {isOpen: false};
     public solutionsDropdownStatus: { isOpen: boolean } = {isOpen: false};
@@ -52,7 +52,7 @@ export class HomeComponent implements OnInit {
     generateResources() {
 
         // Generates the resources from the resources-list.json file
-        // then sets that array to this.resources.
+        // then sets that array to this._resources-helpers.
         this.resourceService.generateResources().then(resources => this.resources = resources);
     }
 
@@ -63,6 +63,7 @@ export class HomeComponent implements OnInit {
     // each time it is called, but in practice the name is fine as the function is
     // to show the dropdown whenever the user hovers over the dropdown and stop 
     // showing when the user is no longer hovering over it.
+
     showIndustriesDropdown($event: MouseEvent) {
         $event.preventDefault();
         $event.stopPropagation();
@@ -92,7 +93,7 @@ export class HomeComponent implements OnInit {
     // the dropdowns is selected. The functions read the title of the dropdown and sees if
     // it is the default title. If it is, then it resets all cards. If not, then
     // it shows only the cards that have that resource type declared.
-    // TODO: Combine at least part into a single function. Possibly a service?
+
     toggleIndustry(industry) {
         this.currentIndustryTitle = industry;
 
@@ -104,7 +105,7 @@ export class HomeComponent implements OnInit {
                 resource.isVisible = resource.industry === industry;
             }
         } else {
-            // Else show all resources (assumes that this will
+            // Else show all _resources-helpers (assumes that this will
             // only be called when 'clear' is pressed).
             this.showAllResources();
         }
@@ -121,7 +122,7 @@ export class HomeComponent implements OnInit {
                 resource.isVisible = resource.service === service;
             }
         } else {
-            // Else show all resources (assumes that this will
+            // Else show all _resources-helpers (assumes that this will
             // only be called when 'clear' is pressed).
             this.showAllResources();
         }
@@ -138,7 +139,7 @@ export class HomeComponent implements OnInit {
                 resource.isVisible = resource.solution === solution;
             }
         } else {
-            // Else show all resources (assumes that this will
+            // Else show all _resources-helpers (assumes that this will
             // only be called when 'clear' is pressed).
             this.showAllResources();
         }

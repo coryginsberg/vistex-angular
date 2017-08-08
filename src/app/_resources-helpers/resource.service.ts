@@ -10,9 +10,9 @@ export class ResourceService {
 
     generateResources(): Promise<Resource[]> {
         // Call Angular's http dependency and gets the resources-list.json file.
-        // Sets the JSON object to a promise to be used in the home component.
+        // Sets the JSON object to a promise to be used in the resources component.
         return this.http
-            .get<Resource[]>('../assets/resources-list.json')
+            .get<Resource[]>('../assets/resources-list.json') // The URL to the json file that the _resources-helpers are listed in
             .toPromise();
     }
 }

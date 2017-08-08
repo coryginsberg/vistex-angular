@@ -1,6 +1,13 @@
 <div class="container-fluid">
     <div class="header">
-        <h1 class="text-center">Resources</h1>
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center">Resources</h1>
+            </div>
+            <div class="col-12">
+                <p class="text-center">Read our customer case studies to learn how Vistex helps companies like yours make more, keep more and grow smarter.</p>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -13,7 +20,7 @@
             <button dropdownToggle type="button" class="btn btn-secondary btn-lg dropdown-toggle">
                 {{currentIndustryTitle}}<span class="caret"></span></button>
             <ul *dropdownMenu class="dropdown-menu">
-                <li *ngFor="let industry of industries | getKey" role="menuitem">
+                <li *ngFor="let industry of industries | getValue" role="menuitem">
                     <button class="dropdown-item" (click)="toggleIndustry(industry)">{{industry}}</button>
                 </li>
             </ul>
@@ -24,7 +31,7 @@
             <button dropdownToggle type="button" class="btn btn-secondary btn-lg dropdown-toggle">
                 {{currentServiceTitle}}<span class="caret"></span></button>
             <ul *dropdownMenu class="dropdown-menu" role="menu">
-                <li *ngFor="let service of services | getKey" role="menuitem">
+                <li *ngFor="let service of services | getValue" role="menuitem">
                     <button class="dropdown-item" (click)="toggleService(service)">{{service}}</button>
                 </li>
             </ul>
@@ -35,7 +42,7 @@
             <button dropdownToggle type="button" class="btn btn-secondary btn-lg dropdown-toggle">
                 {{currentSolutionTitle}}<span class="caret"></span></button>
             <ul *dropdownMenu class="dropdown-menu" role="menu">
-                <li *ngFor="let solution of solutions | getKey" role="menuitem">
+                <li *ngFor="let solution of solutions | getValue" role="menuitem">
                     <button class="dropdown-item" (click)="toggleSolution(solution)">{{solution}}</button>
                 </li>
             </ul>
@@ -58,13 +65,13 @@
         <masonry [options]="masonryOptions">
             <div class="brick-sizer"></div>
             <masonry-brick class="brick" *ngFor="let resource of resources">
-                <!-- Only shows the resources that are visible -->
+                <!-- Only shows the _resources-helpers that are visible -->
                 <div *ngIf="resource.isVisible">
                     <a href="{{resource.link}}">
                         <div class="resources-links card">
                             <img class="card-img-top" src="{{resource.image}}" alt="Card image">
                             <div class="card-block">
-                                <h5 class="card-title">{{resource.blurb}}</h5>
+                                <h3 class="card-title">{{resource.blurb}}</h3>
                             </div>
                         </div>
                     </a>

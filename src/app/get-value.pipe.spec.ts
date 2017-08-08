@@ -1,4 +1,4 @@
-import { GetKeyPipe } from './get-key.pipe';
+import { GetKeyPipe } from './get-value.pipe';
 
 describe('GetKeyPipe', () => {
   it('create an instance', () => {
