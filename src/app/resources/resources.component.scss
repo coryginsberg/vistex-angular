@@ -73,14 +73,12 @@ a {
 }
 
 .vistex-btn {
-    background-color: $vistex-yellow;
+    margin-top: 2px;
+    background-color: #d3d3d3;
     border: none;
-    color: #fff;
+    color: $vistex-blue;
     font-size: 18px;
-    font-weight: bold;
-    border-bottom: 2px solid $vistex-dark-yellow;
-    text-transform: uppercase;
-    line-height: 120%;
+    border-bottom: 2px solid $vistex-blue;
     padding: 8px 14px 10px 14px;
     border-radius: 0;
 }
@@ -95,6 +93,12 @@ button {
     background: #fff;
     border-style: hidden;
     height: 325px;
+    width: 314px;
+    .card-img-top {
+        height: 174px;
+        overflow: hidden;
+    }
+
     .card-block {
         padding: 0;
         margin: 10px 0 0;
@@ -118,6 +122,7 @@ masonry {
 }
 
 masonry-brick {
-    width: 314px;
+    padding-right: 10px;
+    padding-left: 10px;
     float: left;
 }
