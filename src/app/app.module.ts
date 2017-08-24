@@ -19,10 +19,8 @@ import { GetValuePipe } from './get-value.pipe';
 import { MasonryModule } from 'angular2-masonry';
 
 const routes: Routes = [
-    {
-        path: '',
-        component: HomeComponent
-    }
+    { path: 'resources-angular', component: HomeComponent },
+    { path: '', redirectTo: '/resources-angular', pathMatch: 'full' },
 ];
 
 @NgModule({

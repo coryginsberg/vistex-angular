@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    title = 'Vistex Software & Services | Enterprise Software | Go-to-Market Programs';
+    // title = 'Vistex Software & Services | Enterprise Software | Go-to-Market Programs';
 }
