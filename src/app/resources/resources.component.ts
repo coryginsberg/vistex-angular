@@ -1,8 +1,8 @@
 import { Industries, Services, Solutions } from '../_resources-helpers/resources.enum';
-import { Resource } from '../_resources-helpers/resource';
 import { ResourceService } from '../_resources-helpers/resource.service';
 import { Component, OnInit } from '@angular/core';
 import { MasonryOptions } from 'angular2-masonry';
+import RootObject = resource.RootObject;
 
 @Component({
     selector: 'vistex-resources',
@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
     currentServiceTitle = this.serviceTitle;
     currentSolutionTitle = this.solutionTitle;
 
-    resources: Resource[];
+    resources: RootObject[];
 
     // Angular2-masonry source: https://www.npmjs.com/package/angular2-masonry
     public masonryOptions: MasonryOptions = {
@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
     constructor(private resourceService: ResourceService) {
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.generateResources();
     }
 
@@ -53,7 +53,17 @@ export class HomeComponent implements OnInit {
 
         // Generates the resources from the resources-list.json file
         // then sets that array to this._resources-helpers.
-        this.resourceService.generateResources().then(resources => this.resources = resources);
+        this.resourceService.generateResources().subscribe(
+            resources => {
+                this.resources = resources;
+                for (const resource of this.resources) {
+                    console.log(resource['_embedded']['wp:featuredmedia']['0']['source_url']);
+                }
+            },
+            err => {
+                console.log(err);
+            }
+        );
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -102,7 +112,7 @@ export class HomeComponent implements OnInit {
             // If not, then filters the cards for only the ones
             // that have the selected keyword listed.
             for (const resource of this.resources) {
-                resource.isVisible = resource.industry === industry;
+                // resource.isVisible = resource.industry === industry;
             }
         } else {
             // Else show all _resources-helpers (assumes that this will
@@ -119,7 +129,7 @@ export class HomeComponent implements OnInit {
             // If not, then filters the cards for only the ones
             // that have the selected keyword listed.
             for (const resource of this.resources) {
-                resource.isVisible = resource.service === service;
+                // resource.isVisible = resource.service === service;
             }
         } else {
             // Else show all _resources-helpers (assumes that this will
@@ -136,7 +146,7 @@ export class HomeComponent implements OnInit {
             // If not, then filters the cards for only the ones
             // that have the selected keyword listed.
             for (const resource of this.resources) {
-                resource.isVisible = resource.solution === solution;
+                // resource.isVisible = resource.solution === solution;
             }
         } else {
             // Else show all _resources-helpers (assumes that this will
@@ -148,7 +158,7 @@ export class HomeComponent implements OnInit {
     // Restores all hidden cards
     showAllResources() {
         for (const resource of this.resources) {
-            resource.isVisible = true;
+            // resource.isVisible = true;
         }
     }
 }

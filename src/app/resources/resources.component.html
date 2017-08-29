@@ -4,9 +4,6 @@
             <div class="col-12">
                 <h1 class="text-center">Resources</h1>
             </div>
-            <div class="col-12">
-                <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed imperdiet, orci eget eleifend luctus, risus ante faucibus eros, ac ullamcorper risus massa quis neque.</p>
-            </div>
         </div>
     </div>
 </div>
@@ -66,16 +63,19 @@
             <div class="brick-sizer"></div>
             <masonry-brick class="brick" *ngFor="let resource of resources">
                 <!-- Only shows the _resources-helpers that are visible -->
-                <div *ngIf="resource.isVisible">
+                <!--<div *ngIf="resource.isVisible">-->
                     <a href="{{resource.link}}">
                         <div class="resources-links card">
-                            <img class="card-img-top" src="{{resource.image}}" alt="Card image">
+                            <div *ngIf="resource._embedded['wp:featuredmedia'];then showFeatured else showTemp"></div>
+                            <ng-template #showFeatured><img class="card-img-top" src="{{resource['_embedded']['wp:featuredmedia']['0']['source_url']}}" alt="Card image"></ng-template>
+                            <ng-template #showTemp><img class="card-img-top" src="https://via.placeholder.com/300x200" alt="Card image"></ng-template>
+
                             <div class="card-block">
-                                <h3 class="card-title">{{resource.blurb}}</h3>
+                                <h3 class="card-title">{{resource.title.rendered}}</h3>
                             </div>
                         </div>
                     </a>
-                </div>
+                <!--</div>-->
             </masonry-brick>
         </masonry>
     </div>

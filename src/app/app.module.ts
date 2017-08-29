@@ -6,14 +6,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
-
 // Component Imports
 import { AppComponent } from './app.component';
 import { HomeComponent } from './resources/resources.component';
-
 // Extra Angular Imports
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { GetValuePipe } from './get-value.pipe';
 import { MasonryModule } from 'angular2-masonry';
