@@ -3,6 +3,7 @@ import { Resource } from '../_resources-helpers/resource';
 import { ResourceService } from '../_resources-helpers/resource.service';
 import { Component, OnInit } from '@angular/core';
 import { MasonryOptions } from 'angular2-masonry';
+import {CollectionResponse, WpService} from 'ngx-wordpress';
 
 @Component({
     selector: 'vistex-resources',
@@ -42,11 +43,16 @@ export class HomeComponent implements OnInit {
     public servicesDropdownStatus: { isOpen: boolean } = {isOpen: false};
     public solutionsDropdownStatus: { isOpen: boolean } = {isOpen: false};
 
-    constructor(private resourceService: ResourceService) {
+    constructor(private resourceService: ResourceService, public wp: WpService) {
     }
+
+    args = {
+
+    };
 
     ngOnInit() {
         this.generateResources();
+
     }
 
     generateResources() {
