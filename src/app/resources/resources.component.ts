@@ -54,15 +54,8 @@ export class HomeComponent implements OnInit {
         // Generates the resources from the resources-list.json file
         // then sets that array to this._resources-helpers.
         this.resourceService.generateResources().subscribe(
-            resources => {
-                this.resources = resources;
-                for (const resource of this.resources) {
-                    console.log(resource['_embedded']['wp:featuredmedia']['0']['source_url']);
-                }
-            },
-            err => {
-                console.log(err);
-            }
+            resources => this.resources = resources,
+            err => console.log(err)
         );
     }
 

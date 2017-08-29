@@ -17,9 +17,21 @@ export class ResourceService {
         // Call Angular's http dependency and gets the resources-list.json file.
         // Sets the JSON object to an observable to be used in the resources component.
 
-        return this.http.get('https://www.vistex.com/wp-json/wp/v2/pages/?_embed&per_page=100&page=1&parent=242&orderby=title&order=asc')
+        const urlBase = 'https://www.vistex.com/wp-json/wp/v2/';
+        const urlEndpoint = 'pages/';
+        const urlParameters =
+            '?_embed' +
+            '&per_page=100' +
+            '&page=1' +
+            '&parent=242' +
+            '&orderby=title' +
+            '&order=asc';
+
+        return this.http.get(urlBase + urlEndpoint + urlParameters)
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error.json().error || error));
+
+        // TODO: Special characters are not rendering properly.
 
     }
 }

@@ -66,11 +66,13 @@
                 <!--<div *ngIf="resource.isVisible">-->
                     <a href="{{resource.link}}">
                         <div class="resources-links card">
+                            <!-- If statement to make sure that proper images load. If no featured image is found, -->
+                            <!-- then get a placeholder image instead so that all rows are even. -->
                             <div *ngIf="resource._embedded['wp:featuredmedia'];then showFeatured else showTemp"></div>
-                            <ng-template #showFeatured><img class="card-img-top" src="{{resource['_embedded']['wp:featuredmedia']['0']['source_url']}}" alt="Card image"></ng-template>
-                            <ng-template #showTemp><img class="card-img-top" src="https://via.placeholder.com/300x200" alt="Card image"></ng-template>
-
+                                <ng-template #showFeatured><img class="card-img-top" src="{{resource['_embedded']['wp:featuredmedia']['0']['source_url']}}" alt="Card image"></ng-template>
+                                <ng-template #showTemp><img class="card-img-top" src="https://via.placeholder.com/300x200" alt="Card image"></ng-template>
                             <div class="card-block">
+                                <!-- The title of the resource. -->
                                 <h3 class="card-title">{{resource.title.rendered}}</h3>
                             </div>
                         </div>
