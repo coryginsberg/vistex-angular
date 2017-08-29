@@ -20,21 +20,22 @@ export enum Industries {
     'Telecommunications',
 }
 
-export enum Services {
-    'Analytics',
-    'CRM Integration',
-    'Program Delivery',
-    'Solution Delivery',
-    'Customer Support',
-    'Global Payments',
-    'Strategy',
-    'Training',
-}
-
 export enum Solutions {
     'Go-to-Market Suite',
     'Solutions for SAP',
     'channelConduit Suite',
     'Counterpoint Suite',
     'VIBES',
+}
+
+export enum ContentType {
+    'Webinar',
+    'On-demand Webinar',
+    'Case Study',
+    'Video',
+    'Brochure',
+    'Solution Brief',
+    'Infographic',
+    'eBook',
+    'Whitepaper',
 }

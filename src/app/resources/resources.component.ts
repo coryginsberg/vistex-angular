@@ -1,4 +1,4 @@
-import { Industries, Services, Solutions } from '../_resources-helpers/resources.enum';
+import { Industries, ContentType, Solutions } from '../_resources-helpers/resources.enum';
 import { ResourceService } from '../_resources-helpers/resource.service';
 import { Component, OnInit } from '@angular/core';
 import { MasonryOptions } from 'angular2-masonry';
@@ -15,17 +15,17 @@ import {isSuccess} from '@angular/http/src/http_utils';
 export class HomeComponent implements OnInit {
 
     readonly industries = Industries;
-    readonly services = Services;
+    readonly contentType = ContentType;
     readonly solutions = Solutions;
 
     readonly industryTitle = 'Industries';
-    readonly serviceTitle = 'Services';
+    readonly contentTypeTitle = 'Content Type';
     readonly solutionTitle = 'Solutions';
 
     isLoading = true;
 
     currentIndustryTitle = this.industryTitle;
-    currentServiceTitle = this.serviceTitle;
+    currentContentTypeTitle = this.contentTypeTitle;
     currentSolutionTitle = this.solutionTitle;
 
     resources: RootObject[];
@@ -42,8 +42,8 @@ export class HomeComponent implements OnInit {
     // This is set by show___Dropdown() and read by the 
     // corresponding dropdown in resources.component.html
     public industryDropdownStatus: { isOpen: boolean } = {isOpen: false};
-    public servicesDropdownStatus: { isOpen: boolean } = {isOpen: false};
     public solutionsDropdownStatus: { isOpen: boolean } = {isOpen: false};
+    public contentTypeDropdownStatus: { isOpen: boolean } = {isOpen: false};
 
     constructor(private resourceService: ResourceService) {
     }
@@ -78,20 +78,20 @@ export class HomeComponent implements OnInit {
         this.industryDropdownStatus.isOpen = !this.industryDropdownStatus.isOpen;
     }
 
-    showServicesDropdown($event: MouseEvent) {
-        $event.preventDefault();
-        $event.stopPropagation();
-
-        // Sets the dropdownStatus to the opposite of what it was before firing
-        this.servicesDropdownStatus.isOpen = !this.servicesDropdownStatus.isOpen;
-    }
-
     showSolutionsDropdown($event: MouseEvent) {
         $event.preventDefault();
         $event.stopPropagation();
 
         // Sets the dropdownStatus to the opposite of what it was before firing
         this.solutionsDropdownStatus.isOpen = !this.solutionsDropdownStatus.isOpen;
+    }
+
+    showContentTypeDropdown($event: MouseEvent) {
+        $event.preventDefault();
+        $event.stopPropagation();
+
+        // Sets the dropdownStatus to the opposite of what it was before firing
+        this.contentTypeDropdownStatus.isOpen = !this.contentTypeDropdownStatus.isOpen;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -117,23 +117,6 @@ export class HomeComponent implements OnInit {
         }
     }
 
-    toggleService(service) {
-        this.currentServiceTitle = service;
-
-        // Checks if the dropdown title is the default name
-        if (service !== this.serviceTitle) {
-            // If not, then filters the cards for only the ones
-            // that have the selected keyword listed.
-            for (const resource of this.resources) {
-                // resource.isVisible = resource.service === service;
-            }
-        } else {
-            // Else show all _resources-helpers (assumes that this will
-            // only be called when 'clear' is pressed).
-            this.showAllResources();
-        }
-    }
-
     toggleSolution(solution) {
         this.currentSolutionTitle = solution;
 
@@ -143,6 +126,24 @@ export class HomeComponent implements OnInit {
             // that have the selected keyword listed.
             for (const resource of this.resources) {
                 // resource.isVisible = resource.solution === solution;
+            }
+        } else {
+            // Else show all _resources-helpers (assumes that this will
+            // only be called when 'clear' is pressed).
+            this.showAllResources();
+        }
+    }
+
+
+    toggleContentType(service) {
+        this.currentContentTypeTitle = service;
+
+        // Checks if the dropdown title is the default name
+        if (service !== this.contentTypeTitle) {
+            // If not, then filters the cards for only the ones
+            // that have the selected keyword listed.
+            for (const resource of this.resources) {
+                // resource.isVisible = resource.service === service;
             }
         } else {
             // Else show all _resources-helpers (assumes that this will

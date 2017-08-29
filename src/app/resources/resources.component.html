@@ -22,18 +22,7 @@
                 </li>
             </ul>
         </div>
-        <!-- Second Filter Dropdown (Services) -->
-        <div class="btn-group" dropdown [isOpen]="servicesDropdownStatus.isOpen"
-             (mouseenter)="showServicesDropdown($event)" (mouseleave)="showServicesDropdown($event)">
-            <button dropdownToggle type="button" class="btn btn-secondary btn-lg dropdown-toggle">
-                {{currentServiceTitle}}<span class="caret"></span></button>
-            <ul *dropdownMenu class="dropdown-menu" role="menu">
-                <li *ngFor="let service of services | getValue" role="menuitem">
-                    <button class="dropdown-item" (click)="toggleService(service)">{{service}}</button>
-                </li>
-            </ul>
-        </div>
-        <!-- Third Filter Dropdown (Solutions) -->
+        <!-- Second Filter Dropdown (Solutions) -->
         <div class="btn-group" dropdown [isOpen]="solutionsDropdownStatus.isOpen"
              (mouseenter)="showSolutionsDropdown($event)" (mouseleave)="showSolutionsDropdown($event)">
             <button dropdownToggle type="button" class="btn btn-secondary btn-lg dropdown-toggle">
@@ -44,11 +33,22 @@
                 </li>
             </ul>
         </div>
+        <!-- Third Filter Dropdown (Content Type) -->
+        <div class="btn-group" dropdown [isOpen]="contentTypeDropdownStatus.isOpen"
+             (mouseenter)="showContentTypeDropdown($event)" (mouseleave)="showContentTypeDropdown($event)">
+            <button dropdownToggle type="button" class="btn btn-secondary btn-lg dropdown-toggle">
+                {{currentContentTypeTitle}}<span class="caret"></span></button>
+            <ul *dropdownMenu class="dropdown-menu" role="menu">
+                <li *ngFor="let type of contentType | getValue" role="menuitem">
+                    <button class="dropdown-item" (click)="toggleContentType(type)">{{type}}</button>
+                </li>
+            </ul>
+        </div>
         <!-- If any filter is selected, then show the 'clear' button -->
-        <div *ngIf="currentIndustryTitle !== industryTitle || currentServiceTitle !== serviceTitle || currentSolutionTitle !== solutionTitle">
+        <div *ngIf="currentIndustryTitle !== industryTitle || currentContentTypeTitle !== contentTypeTitle || currentSolutionTitle !== solutionTitle">
             <div class="btn-clear">
                 <button type="button" class="btn btn-lg vistex-btn"
-                        (click)="toggleIndustry(industryTitle); toggleService(serviceTitle); toggleSolution(solutionTitle)">
+                        (click)="toggleIndustry(industryTitle); toggleContentType(contentTypeTitle); toggleSolution(solutionTitle)">
                     <i class="material-icons align-middle md-48">clear</i>
                     <span class="align-middle">Clear</span>
                 </button>

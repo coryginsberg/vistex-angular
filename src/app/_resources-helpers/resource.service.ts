@@ -6,10 +6,14 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import 'rxjs/add/observable/forkJoin';
+
 import RootObject = resource.RootObject;
+import {current} from 'codelyzer/util/syntaxKind';
 
 @Injectable()
 export class ResourceService {
+    maxPageCount = '1';
 
     constructor(private http: Http) {}
 
@@ -19,16 +23,22 @@ export class ResourceService {
 
         const urlBase = 'https://www.vistex.com/wp-json/wp/v2/';
         const urlEndpoint = 'pages/';
-        const urlParameters =
-            '?_embed' +
-            '&per_page=100' +
-            '&page=1' +
+        function urlParameters(currentPage = 1): string {
+            return '?_embed' +
+            '&per_page=10' +
+            '&page=' + currentPage +
             '&parent=242' +
             '&orderby=title' +
             '&order=asc';
+        }
 
-        return this.http.get(urlBase + urlEndpoint + urlParameters)
-            .map((res: Response) => res.json())
-            .catch((error: any) => Observable.throw(error.json().error || error));
+        // // Get the number of pages returned in the header.
+        // this.http.get(urlBase + urlEndpoint + urlParameters)
+        //     .map((res: Response) => this.maxPageCount = res.headers.get('X-WP-TotalPages'))
+        //     .catch((error: any) => Observable.throw(error.json().error || error));
+
+        return this.http.get(urlBase + urlEndpoint + urlParameters(1))
+                .map((res: Response) => res.json() || [])
+                .catch((error: any) => Observable.throw(error.json().error || error));
     }
 }
