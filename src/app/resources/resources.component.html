@@ -73,7 +73,7 @@
                                 <ng-template #showTemp><img class="card-img-top" src="https://via.placeholder.com/300x200" alt="Card image"></ng-template>
                             <div class="card-block">
                                 <!-- The title of the resource. -->
-                                <h3 class="card-title">{{resource.title.rendered}}</h3>
+                                <h3 class="card-title"><span [innerHTML]="this.titleCorrected(resource.title.rendered)"></span></h3>
                             </div>
                         </div>
                     </a>

@@ -50,7 +50,6 @@ export class HomeComponent implements OnInit {
     }
 
     generateResources() {
-
         // Generates the resources from the resources-list.json file
         // then sets that array to this._resources-helpers.
         this.resourceService.generateResources().subscribe(
@@ -153,5 +152,14 @@ export class HomeComponent implements OnInit {
         for (const resource of this.resources) {
             // resource.isVisible = true;
         }
+    }
+
+    // The JSON for the title is not properly encoded and simply decodes special characters
+    // into the html symbol number. Simply inserting that into the html itself does not fix
+    // it, as it does not parse plaintext for conversions. Calling titleCorrected() within an
+    // innerHTML fixes that by passing the title text into TypeScript/JavaScript and returning
+    // the result, which should properly encode the text.
+    titleCorrected(title: string): string {
+        return title;
     }
 }
