@@ -62,25 +62,21 @@
     <!-- Resources -->
     <div id="wrapper">
         <!-- The angular2-masonry framework defines the masonry and masonry-brick tags -->
-        <ul wpCollection="posts" [wpArgs]="{ per_page: 100, page: 1, parent: 242 }" (wpResponse)="res = $event">
-            <li *ngFor="let post of res?.data"> {{ post.title.rendered }} </li>
-        </ul>
-
-        <!--<masonry [options]="masonryOptions">-->
-            <!--<div class="brick-sizer"></div>-->
-            <!--<masonry-brick class="brick" *ngFor="let resource of resources">-->
-                <!--&lt;!&ndash; Only shows the _resources-helpers that are visible &ndash;&gt;-->
-                <!--<div *ngIf="resource.isVisible">-->
-                    <!--<a href="{{resource.link}}">-->
-                        <!--<div class="resources-links card">-->
-                            <!--<img class="card-img-top" src="{{resource.image}}" alt="Card image">-->
-                            <!--<div class="card-block">-->
-                                <!--<h3 class="card-title">{{resource.blurb}}</h3>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</a>-->
-                <!--</div>-->
-            <!--</masonry-brick>-->
-        <!--</masonry>-->
+        <masonry [options]="masonryOptions">
+            <div class="brick-sizer"></div>
+            <masonry-brick class="brick" *ngFor="let resource of resources">
+                <!-- Only shows the _resources-helpers that are visible -->
+                <div *ngIf="resource.isVisible">
+                    <a href="{{resource.link}}">
+                        <div class="resources-links card">
+                            <img class="card-img-top" src="{{resource.image}}" alt="Card image">
+                            <div class="card-block">
+                                <h3 class="card-title">{{resource.blurb}}</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </masonry-brick>
+        </masonry>
     </div>
 </div>

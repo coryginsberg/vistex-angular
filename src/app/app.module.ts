@@ -17,7 +17,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { GetValuePipe } from './get-value.pipe';
 import { MasonryModule } from 'angular2-masonry';
-import {WordPressModule} from 'ngx-wordpress';
 
 const routes: Routes = [
     { path: 'resources-angular', component: HomeComponent },
@@ -43,7 +42,6 @@ const routes: Routes = [
         FlexLayoutModule,
         MasonryModule,
         HttpClientModule,
-        WordPressModule.forRoot('https://vistex.com'),
     ],
     providers: [ ResourceService ],
     bootstrap: [ AppComponent ],
