@@ -56,6 +56,17 @@
         </div>
     </div>
 
+    <!-- Loading animation. Disappears after done loading resources. -->
+    <div *ngIf="isLoading">
+        <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+        </div>
+    </div>
+
     <!-- Resources -->
     <div id="wrapper">
         <!-- The angular2-masonry framework defines the masonry and masonry-brick tags -->

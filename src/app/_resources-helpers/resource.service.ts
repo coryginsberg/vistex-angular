@@ -30,8 +30,5 @@ export class ResourceService {
         return this.http.get(urlBase + urlEndpoint + urlParameters)
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error.json().error || error));
-
-        // TODO: Special characters are not rendering properly.
-
     }
 }

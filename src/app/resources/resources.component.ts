@@ -3,11 +3,12 @@ import { ResourceService } from '../_resources-helpers/resource.service';
 import { Component, OnInit } from '@angular/core';
 import { MasonryOptions } from 'angular2-masonry';
 import RootObject = resource.RootObject;
+import {isSuccess} from '@angular/http/src/http_utils';
 
 @Component({
     selector: 'vistex-resources',
     templateUrl: './resources.component.html',
-    styleUrls: ['./resources.component.scss'],
+    styleUrls: ['./resources.component.scss', './loading.scss'],
     providers: [ResourceService],
 })
 
@@ -20,6 +21,8 @@ export class HomeComponent implements OnInit {
     readonly industryTitle = 'Industries';
     readonly serviceTitle = 'Services';
     readonly solutionTitle = 'Solutions';
+
+    isLoading = true;
 
     currentIndustryTitle = this.industryTitle;
     currentServiceTitle = this.serviceTitle;
@@ -54,7 +57,8 @@ export class HomeComponent implements OnInit {
         // then sets that array to this._resources-helpers.
         this.resourceService.generateResources().subscribe(
             resources => this.resources = resources,
-            err => console.log(err)
+            err => console.log(err),
+            () => this.isLoading = false
         );
     }
 
