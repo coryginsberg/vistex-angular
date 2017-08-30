@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { MasonryOptions } from 'angular2-masonry';
 import RootObject = resource.RootObject;
 import {isSuccess} from '@angular/http/src/http_utils';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/forkJoin';
 
 @Component({
     selector: 'vistex-resources',
@@ -28,7 +30,7 @@ export class HomeComponent implements OnInit {
     currentContentTypeTitle = this.contentTypeTitle;
     currentSolutionTitle = this.solutionTitle;
 
-    resources: RootObject[];
+    resources: RootObject[] = [];
 
     // Angular2-masonry source: https://www.npmjs.com/package/angular2-masonry
     public masonryOptions: MasonryOptions = {
@@ -52,14 +54,38 @@ export class HomeComponent implements OnInit {
         this.generateResources();
     }
 
+    // Generate the resources. Since Wordpress REST API is paged (maxed out at 100 per page), this calls the API multiple
+    // times to get all the pages. If a page is not found, then an error is thrown, so the array is not futureproof-able.
+    // If some links aren't showing on the resources page in the future, add the next number to the end of the array and
+    // see if that works.
+    // !!!!!!!!!!!!!!!!!!!!!!!!! THIS IS A HACK !!!!!!!!!!!!!!!!!!!!!!!!!
+    // (More specifically, the array is a hack)
+    // The preferred way of getting the number of pages is to read the header response, X-WP-TotalPages, and use that number
+    // to loop through, but I cannot figure out a way to loop through, as subscribe is async and doesn't run until the rest
+    // of the app is done, meaning that I can't extract the response before the page starts generating resources. I'm sure
+    // that I would be able to figure this out if given enough time, but tomorrow is my last day, I still have more to do
+    // and it's time for lunch.
+    // -- Cory.
+    // TODO: Someone implement this properly someday (Sorry).
     generateResources() {
-        // Generates the resources from the resources-list.json file
-        // then sets that array to this._resources-helpers.
-        this.resourceService.generateResources().subscribe(
-            resources => this.resources = resources,
+        const pagesArray = [1, 2];
+
+        this.processPages(pagesArray).subscribe(
+            resources => resources.forEach((resource: RootObject[]) => this.resources = this.resources.concat(resource)),
             err => console.log(err),
             () => this.isLoading = false
         );
+    }
+
+    processPages(pages) {
+        const observableBatch = [];
+        pages.forEach((component, index, pageNum) => {
+            observableBatch.push(this.resourceService.generateResources(pageNum[component]));
+        });
+
+        console.log('pages: ' + pages);
+
+        return Observable.forkJoin(observableBatch);
     }
 
     ///////////////////////////////////////////////////////////////////////////////

@@ -1,44 +1,57 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-// import RootObject = resource.RootObject;
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/observable/forkJoin';
 
 import RootObject = resource.RootObject;
-import {current} from 'codelyzer/util/syntaxKind';
 
 @Injectable()
 export class ResourceService {
-    maxPageCount = '1';
+    numPages = 0;
+
+    static toArray(num: number): number[] {
+        console.log('num: ' + isNaN(num));
+        const array = [];
+
+        for (let i = 0; i < num; i++) {
+            array.push(i);
+        }
+        return array;
+    }
 
     constructor(private http: Http) {}
 
-    generateResources(): Observable<RootObject[]> {
+    // Get the URL string for the vistex REST API.
+    // The page number defaults to 1, but can be any number > 0
+    static getURL(page = 1): string {
+        if (page <= 0) {
+            throw new RangeError('Page number is out of range. Please make sure that the page number is greater than or equal to 1.');
+        }
+
+        const urlBase = 'https://www.vistex.com/wp-json/wp/v2/'; // The base URL of the http request (i.e. where the json is located on the site)
+        const urlEndpoint = 'pages/'; // The endpoint of the http request (Can also be `posts/`)
+        const urlParameters = '?_embed' + // JSON needs to return embedded items to get links to images.
+            '&per_page=89' + // Number of pages shown per JSON page (Range: 1-100)
+            '&page=' + page + // Requested JSON page (Default = 1)
+            '&parent=242' + // The ID of the parent page (242 = Resources)
+            '&orderby=title' + // Order by title (default = date)
+            '&order=asc'; // Put in ascending order (default = desc)
+
+        return urlBase + urlEndpoint + urlParameters;
+    }
+
+    generateResources(page): Observable<RootObject[]> {
         // Call Angular's http dependency and gets the resources-list.json file.
         // Sets the JSON object to an observable to be used in the resources component.
 
-        const urlBase = 'https://www.vistex.com/wp-json/wp/v2/';
-        const urlEndpoint = 'pages/';
-        function urlParameters(currentPage = 1): string {
-            return '?_embed' +
-            '&per_page=10' +
-            '&page=' + currentPage +
-            '&parent=242' +
-            '&orderby=title' +
-            '&order=asc';
-        }
+        return this.http.get(ResourceService.getURL(page))
+            .map(res => res.json())
+            .catch((error: any) => Observable.throw(error.json().error || error));
 
-        // // Get the number of pages returned in the header.
-        // this.http.get(urlBase + urlEndpoint + urlParameters)
-        //     .map((res: Response) => this.maxPageCount = res.headers.get('X-WP-TotalPages'))
-        //     .catch((error: any) => Observable.throw(error.json().error || error));
-
-        return this.http.get(urlBase + urlEndpoint + urlParameters(1))
-                .map((res: Response) => res.json() || [])
-                .catch((error: any) => Observable.throw(error.json().error || error));
     }
 }
