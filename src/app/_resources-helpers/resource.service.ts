@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
@@ -12,17 +12,6 @@ import RootObject = resource.RootObject;
 
 @Injectable()
 export class ResourceService {
-    numPages = 0;
-
-    static toArray(num: number): number[] {
-        console.log('num: ' + isNaN(num));
-        const array = [];
-
-        for (let i = 0; i < num; i++) {
-            array.push(i);
-        }
-        return array;
-    }
 
     constructor(private http: Http) {}
 
@@ -45,6 +34,7 @@ export class ResourceService {
         return urlBase + urlEndpoint + urlParameters;
     }
 
+    // Generate and return the JSON page
     generateResources(page): Observable<RootObject[]> {
         // Call Angular's http dependency and gets the resources-list.json file.
         // Sets the JSON object to an observable to be used in the resources component.
@@ -52,6 +42,5 @@ export class ResourceService {
         return this.http.get(ResourceService.getURL(page))
             .map(res => res.json())
             .catch((error: any) => Observable.throw(error.json().error || error));
-
     }
 }

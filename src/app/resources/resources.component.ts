@@ -3,7 +3,6 @@ import { ResourceService } from '../_resources-helpers/resource.service';
 import { Component, OnInit } from '@angular/core';
 import { MasonryOptions } from 'angular2-masonry';
 import RootObject = resource.RootObject;
-import {isSuccess} from '@angular/http/src/http_utils';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
 
@@ -77,13 +76,12 @@ export class HomeComponent implements OnInit {
         );
     }
 
+    // For each page, push an HTTP request and join the resulting pages together to make one observable.
     processPages(pages) {
         const observableBatch = [];
         pages.forEach((component, index, pageNum) => {
             observableBatch.push(this.resourceService.generateResources(pageNum[component]));
         });
-
-        console.log('pages: ' + pages);
 
         return Observable.forkJoin(observableBatch);
     }
@@ -160,7 +158,6 @@ export class HomeComponent implements OnInit {
         }
     }
 
-
     toggleContentType(service) {
         this.currentContentTypeTitle = service;
 
@@ -190,7 +187,7 @@ export class HomeComponent implements OnInit {
     // it, as it does not parse plaintext for conversions. Calling titleCorrected() within an
     // innerHTML fixes that by passing the title text into TypeScript/JavaScript and returning
     // the result, which should properly encode the text.
-    titleCorrected(title: string): string {
+    titleCorrected(title): string {
         return title;
     }
 }
